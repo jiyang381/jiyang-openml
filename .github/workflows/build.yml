@@ -1,0 +1,33 @@
+name: Build OpenML
+
+on:
+  push:
+    branches:
+      - master
+      - 'hf-*'    # hotfix branches
+    tags:
+      - '*.*.*'   # release tag xx.yy.zz
+  pull_request:
+    branches:
+      - master
+      - 'hf-*'
+
+jobs:
+
+  # Build and test job
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: |
+          git fetch -f --tags
+          echo exit code $?
+          git tag --list
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-ja
