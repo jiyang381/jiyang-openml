@@ -31,4 +31,10 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
-      - name: Pu
+      - name: Publish maven package
+        run: mvn deploy -B -Prelease --batch-mode -DskipTests=true
+        env:
+          MAVEN_USERNAME: ${{ secrets.SONATYPE_USER }}
+          MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASS }}
+          PGP_KEY_ID: ${{ secrets.PGP_KEY_ID }}
+          PGP_PASS: ${{ secrets.PGP_PASS }}
