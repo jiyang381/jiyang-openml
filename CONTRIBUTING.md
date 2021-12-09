@@ -28,4 +28,7 @@ When merging bug fixes, maintainers will **cherry pick the changes to the approp
    * In that new branch, perform a pull request to change the badge URLs to point to the new branch
    * Make the branch protected in the settings, so that force pushes are not allowed and PRs are mandatory
    * Consider adding release notes specifying the most relevant changes. Take as an example: https://github.com/feedzai/feedzai-openml/releases/tag/0.2.0
-   * Consider deprecating existing maintenance branches, by [freezing](https://help.github.com/articles/enabling-branch-restrictions/) those branches, after synchronizing with c
+   * Consider deprecating existing maintenance branches, by [freezing](https://help.github.com/articles/enabling-branch-restrictions/) those branches, after synchronizing with current maintainers
+
+**When releasing a new hotfix version** maintainers need to perform a smaller set of steps:
+  * Update the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the corresponding hotfix branch so that the XML snippets indicate the new version. Additionally ensure that the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the *master* branch is updated with the latest `Major.Minor.hotfix` branch (this means that only if you are releasing an hotfix
