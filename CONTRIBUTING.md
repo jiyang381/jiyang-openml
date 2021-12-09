@@ -31,4 +31,13 @@ When merging bug fixes, maintainers will **cherry pick the changes to the approp
    * Consider deprecating existing maintenance branches, by [freezing](https://help.github.com/articles/enabling-branch-restrictions/) those branches, after synchronizing with current maintainers
 
 **When releasing a new hotfix version** maintainers need to perform a smaller set of steps:
-  * Update the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the corresponding hotfix branch so that the XML snippets indicate the new version. Additionally ensure that the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the *master* branch is updated with the latest `Major.Minor.hotfix` branch (this means that only if you are releasing an hotfix
+  * Update the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the corresponding hotfix branch so that the XML snippets indicate the new version. Additionally ensure that the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the *master* branch is updated with the latest `Major.Minor.hotfix` branch (this means that only if you are releasing an hotfix on the latest `Major.Minor` released version, then you need to update *master* branch also).
+  * Consider adding release notes specifying the most relevant changes. Take as an example: https://github.com/feedzai/feedzai-openml-r/releases/tag/0.2.0
+
+**For all releases**, as the hotfix branch is ready all that's needed to actually release is to create an annotated tag pointing to the hotfix branch head (example below for releasing version `1.1.0`):
+
+```bash
+# Ensure the tag is made on the udpated branch
+git fetch -a
+git checkout origin/hf-1.1.X
+git tag -a 1
