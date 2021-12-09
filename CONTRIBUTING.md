@@ -17,4 +17,11 @@ This project uses Mutation Testing to ensure the quality of the testing suite. I
 
 ## Merging
 Pull requests with failing builds will not be merged, and coverage is expected to be above 85%.
-Static code analysis issues will be evaluated ad-hoc, especially since it is common to have several warnings related to abstraction violations that need to be performe
+Static code analysis issues will be evaluated ad-hoc, especially since it is common to have several warnings related to abstraction violations that need to be performed for performance reasons.
+
+When merging bug fixes, maintainers will **cherry pick the changes to the appropriate hotfix branches**.
+
+## Releasing
+**When releasing a new Major.Minor** (read about [Semantic Versioning](https://semver.org/)) maintainers need perform a few steps to ensure the repository documents are updated:
+   * Update the [README](https://github.com/feedzai/feedzai-openml/blob/master/README.md) on the *master* branch so that the XML snippets indicate the new version. Also, update the maven archetype command version.
+   * Create a new hotfix branch named *hf-MM.mm.X* (wh
