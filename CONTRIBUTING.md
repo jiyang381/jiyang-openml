@@ -40,4 +40,12 @@ When merging bug fixes, maintainers will **cherry pick the changes to the approp
 # Ensure the tag is made on the udpated branch
 git fetch -a
 git checkout origin/hf-1.1.X
-git tag -a 1
+git tag -a 1.1.0
+# Your EDITOR will open. Write a good message and save as it is used on Github as a release message
+git push origin 1.1.0
+```
+
+The maven versions of these modules are controlled not by what's written in the POM but by the git history - see [jgitver's page](https://github.com/jgitver/jgitver) for more info. As such, when annotated tags are pushed on the repo the deploy target will be built automatically by Travis and the jars signed and pushed to Sonatype (see [the section on what this entails](#notes-on-sonatype-deployments)).
+
+## Deploying from a local machine
+Since
