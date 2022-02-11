@@ -48,4 +48,9 @@ git push origin 1.1.0
 The maven versions of these modules are controlled not by what's written in the POM but by the git history - see [jgitver's page](https://github.com/jgitver/jgitver) for more info. As such, when annotated tags are pushed on the repo the deploy target will be built automatically by Travis and the jars signed and pushed to Sonatype (see [the section on what this entails](#notes-on-sonatype-deployments)).
 
 ## Deploying from a local machine
-Since
+Since jgitver relies on git history, when deploying version MM.mm.PP to Maven Central from a local computer you must either create a local annotated tag `MM.mm.PP` pointing to your current commit or use `-Djgitver.use-version=MM.mm.PP` when running the maven command below.
+
+To sign and deploy the artifacts locally you need to define the following environment variables (they are usually read from Travis):
+* `SONATYPE_USER`: Feedzai's Sonatype username (usually `feedzai`)
+* `SONATYPE_PASS`: Feedzai's Sonatype password
+* `PGP_KEY_ID`: The ID of 
