@@ -61,4 +61,11 @@ To access Sonatype with the correct credentials you should run the command:
 `mvn clean deploy -Prelease --settings .m2/settings.xml`
 
 **Note:**
-When your local system has GPG 2.1 or later installed the gpg executable will try to migrate the secret keys to the new (non-keyring) format before using them which might fail if being done during maven targets. As such, it is better to explicitly force that migration *before* by using a command like
+When your local system has GPG 2.1 or later installed the gpg executable will try to migrate the secret keys to the new (non-keyring) format before using them which might fail if being done during maven targets. As such, it is better to explicitly force that migration *before* by using a command like:
+
+`gpg -K --homedir=.gnupg`
+
+## Notes on Sonatype deployments
+Deployments to sonatype may be tricky so it is important to know how they work.
+
+When the deployment process starts, a staging repository is created with the name `comfeedzai-XXXX`, which you can access at https://oss.sonatype.org/#stagingRepositories if you have credentials for it (order by descending creation date). Maven will be uploading all the artifacts to that staging repository as the deploy target is being executed on all nodes and at the end of the last artifa
