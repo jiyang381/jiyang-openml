@@ -68,4 +68,14 @@ When your local system has GPG 2.1 or later installed the gpg executable will tr
 ## Notes on Sonatype deployments
 Deployments to sonatype may be tricky so it is important to know how they work.
 
-When the deployment process starts, a staging repository is created with the name `comfeedzai-XXXX`, which you can access at https://oss.sonatype.org/#stagingRepositories if you have credentials for it (order by descending creation date). Maven will be uploading all the artifacts to that staging repository as the deploy target is being executed on all nodes and at the end of the last artifa
+When the deployment process starts, a staging repository is created with the name `comfeedzai-XXXX`, which you can access at https://oss.sonatype.org/#stagingRepositories if you have credentials for it (order by descending creation date). Maven will be uploading all the artifacts to that staging repository as the deploy target is being executed on all nodes and at the end of the last artifact's upload a series of validation rules are performed remotely to ensure that at least all the following apply:
+
+  * All the POMs have
+      * Name
+      * URL
+      * SCM information
+      * Developer information
+  * There are sources and javadocs jars
+  * All jars are PGP-signed
+
+Once all validation rules finish successfully the repository is ready for closing. Our project POMs have the `autoReleaseAfterClose` property enabled so as the process finishes and the staging repository is closed, all artifacts are also published and will eventually be in
