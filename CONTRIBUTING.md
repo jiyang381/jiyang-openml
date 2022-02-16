@@ -53,4 +53,12 @@ Since jgitver relies on git history, when deploying version MM.mm.PP to Maven Ce
 To sign and deploy the artifacts locally you need to define the following environment variables (they are usually read from Travis):
 * `SONATYPE_USER`: Feedzai's Sonatype username (usually `feedzai`)
 * `SONATYPE_PASS`: Feedzai's Sonatype password
-* `PGP_KEY_ID`: The ID of 
+* `PGP_KEY_ID`: The ID of the PGP key to sign the artifacts with
+* `PGP_PASS`: The password of the private PGP key
+
+To access Sonatype with the correct credentials you should run the command:
+
+`mvn clean deploy -Prelease --settings .m2/settings.xml`
+
+**Note:**
+When your local system has GPG 2.1 or later installed the gpg executable will try to migrate the secret keys to the new (non-keyring) format before using them which might fail if being done during maven targets. As such, it is better to explicitly force that migration *before* by using a command like
