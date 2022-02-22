@@ -78,4 +78,9 @@ When the deployment process starts, a staging repository is created with the nam
   * There are sources and javadocs jars
   * All jars are PGP-signed
 
-Once all validation rules finish successfully the repository is ready for closing. Our project POMs have the `autoReleaseAfterClose` property enabled so as the process finishes and the staging repository is closed, all artifacts are also published and will eventually be in
+Once all validation rules finish successfully the repository is ready for closing. Our project POMs have the `autoReleaseAfterClose` property enabled so as the process finishes and the staging repository is closed, all artifacts are also published and will eventually be included in Maven Central.
+
+### Known issues
+First of all, it is fairly common for it to take a while (up to several hours) for the artifacts to show up in the Maven searches (e.g. https://mvnrepository.com/search?q=+com.feedzai). However, they should be available for download usually within 30 minutes from the directory listings such as [http://central.maven.org/maven2/com/feedzai/](http://central.maven.org/maven2/com/feedzai/).
+
+Sometimes the Sonatype infrastructure will not be responsive enough and timeouts will occur while performing any of the publishing step
