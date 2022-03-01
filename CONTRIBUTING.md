@@ -89,4 +89,8 @@ In most cases recovery is just a matter of running the build again after a while
 
 ```bash
 git push origin --delete 0.1.1
-git pu
+git push origin 0.1.1
+```
+
+## Notes on IDE Integration
+Intellij IDEA is, at the time of this writing, incompatible with jgitver and as such it must be disabled as described [here](https://github.com/jgitver/jgitver-maven-plugin/wiki/Intellij-IDEA-configuration).
