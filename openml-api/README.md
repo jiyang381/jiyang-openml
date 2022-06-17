@@ -17,4 +17,4 @@ The other key concepts are the following:
   
 * __MLAlgorithmDescriptor__: describes a Machine Learning algorithm and its configuration parameters
 
-See the [openml-example project](https://github.com/f
+See the [openml-example project](https://github.com/feedzai/feedzai-openml/tree/master/openml-example) for a trivial implementation of these concepts.
