@@ -24,4 +24,23 @@
         <groupId>com.feedzai</groupId>
         <version>0.0.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</mode
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>openml-api</artifactId>
+
+    <name>Feedzai OpenML API</name>
+    <description>API classes to interact with the Feedzai Machine Learning platform.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <!--Testing-->
+        <dependency>
+            <group
