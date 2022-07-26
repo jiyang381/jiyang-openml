@@ -36,3 +36,23 @@ public interface Dataset {
      * Gets the {@link DatasetSchema} associated with the data held by this Dataset.
      *
      * @return The {@link DatasetSchema}.
+     */
+    DatasetSchema getSchema();
+
+    /**
+     * Gets the data instance associated with the given index.
+     *
+     * @param index The index of the instance (zero-based).
+     * @return The instance representation associated with the given index.
+     */
+    Instance instance(int index);
+
+    /**
+     * Gets the feature values associated with the given index for each instance.
+     *
+     * @param index The index of the feature (zero-based).
+     * @return The feature representation associated with the given index.
+     */
+    FeatureValues feature(int index);
+
+  
