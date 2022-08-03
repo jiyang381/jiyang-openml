@@ -55,4 +55,21 @@ public interface Dataset {
      */
     FeatureValues feature(int index);
 
-  
+    /**
+     * Gets an iterator for the instances available in the dataset.
+     *
+     * @return An {@link Iterator} for the instances.
+     */
+    Iterator<Instance> getInstances();
+
+    /**
+     * Yields a new dataset that is a sub-set of the given one containing only the instances that pass the given
+     * predicate.
+     *
+     * @param predicate The predicate to allow an instance to remain in the computed dataset.
+     * @return The new dataset.
+     */
+    Dataset filter(Predicate<Instance> predicate);
+
+    /**
+     * Yields a set of new data
