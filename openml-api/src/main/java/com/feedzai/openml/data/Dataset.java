@@ -72,4 +72,15 @@ public interface Dataset {
     Dataset filter(Predicate<Instance> predicate);
 
     /**
-     * Yields a set of new data
+     * Yields a set of new datasets, each of which contains all the instances that yield the same result when passed
+     * through the given grouping function.
+     *
+     * @param function The function used to map each instance to one of the output datasets.
+     * @param <K>      The concrete type of the value used for the grouping.
+     * @return A map that has each sub-set of this dataset associated with a value for which all of its instances have
+     * the same value.
+     */
+    <K> Map<K, Dataset> groupBy(Function<Instance, K> function);
+
+    /**
+     * Segments the given datase
