@@ -83,4 +83,17 @@ public interface Dataset {
     <K> Map<K, Dataset> groupBy(Function<Instance, K> function);
 
     /**
-     * Segments the given datase
+     * Segments the given dataset into two.
+     *
+     * @param predicate The predicate used to split the dataset into two.
+     * @return A {@link PartitionedDataset}.
+     */
+    PartitionedDataset partition(Predicate<Instance> predicate);
+
+    /**
+     * Yields an empty dataset with the same schema as this one.
+     *
+     * @return An empty dataset.
+     */
+    Dataset empty();
+}
