@@ -11,4 +11,14 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations un
+ * limitations under the License.
+ *
+ */
+
+/**
+ * Contains the concepts relative to data, from the individual data pieces ({@link com.feedzai.openml.data.Instance}) to
+ * the collection of all relevant data instances ({@link com.feedzai.openml.data.Dataset}) and associated concepts.
+ *
+ * @since 0.1.0
+ */
+package com.feedzai.openml.data;
