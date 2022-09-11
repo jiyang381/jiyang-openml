@@ -17,4 +17,26 @@
 
 package com.feedzai.openml.data.schema;
 
-import com.google.commo
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSortedSet;
+
+import java.util.Set;
+import java.util.Objects;
+import java.util.SortedSet;
+
+/**
+ * Represents the type of a feature whose values are a finite set.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class CategoricalValueSchema extends AbstractValueSchema {
+
+    /**
+     * Serial version UID.
+     */
+    private static final long serialVersionUID = 6725548314380017998L;
+
+    /**
+     * The s
