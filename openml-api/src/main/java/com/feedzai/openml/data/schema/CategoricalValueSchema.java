@@ -39,4 +39,18 @@ public class CategoricalValueSchema extends AbstractValueSchema {
     private static final long serialVersionUID = 6725548314380017998L;
 
     /**
-     * The s
+     * The sorted set of nominal values.
+     */
+    private final SortedSet<String> nominalValues;
+
+    /**
+     * Creates a new instance.
+     *
+     * @param allowMissing  A flag that indicates whether missing values should be allowed.
+     * @param nominalValues The list of nominal values.
+     */
+    public CategoricalValueSchema(final boolean allowMissing,
+                                  final Set<String> nominalValues) {
+        super(allowMissing);
+        Preconditions.checkNotNull(nominalValues, "nominal values should not be null");
+        this.nominalV
