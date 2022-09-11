@@ -53,4 +53,19 @@ public class CategoricalValueSchema extends AbstractValueSchema {
                                   final Set<String> nominalValues) {
         super(allowMissing);
         Preconditions.checkNotNull(nominalValues, "nominal values should not be null");
-        this.nominalV
+        this.nominalValues = ImmutableSortedSet.copyOf(nominalValues);
+    }
+
+    /**
+     * Gets the Sorted Set of nominal values. Both uniqueness and order are ensured due to the data structure used.
+     * This ensurance allows clients of this API encode and decode categorical values into more compact representations.
+     *
+     * @return The sorted set of nominal values.
+     */
+    public SortedSet<String> getNominalValues() {
+        return this.nominalValues;
+    }
+
+    @Override
+    public boolean validate(final String value) {
+        return sup
