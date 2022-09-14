@@ -68,4 +68,23 @@ public class CategoricalValueSchema extends AbstractValueSchema {
 
     @Override
     public boolean validate(final String value) {
-        return sup
+        return super.validate(value) && (value == null || this.nominalValues.contains(value));
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * super.hashCode() + Objects.hash(this.nominalValues);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final CategoricalValueSchema other = (CategoricalValueSchema) ob
