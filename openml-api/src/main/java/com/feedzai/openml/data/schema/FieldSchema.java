@@ -100,3 +100,32 @@ public class FieldSchema implements Serializable {
         return this.valueSchema;
     }
 
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.fieldName, this.fieldIndex, this.valueSchema);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final FieldSchema other = (FieldSchema) obj;
+        return Objects.equals(this.fieldName, other.fieldName)
+                && Objects.equals(this.fieldIndex, other.fieldIndex)
+                && Objects.equals(this.valueSchema, other.valueSchema);
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("fieldName", this.fieldName)
+                .add("fieldIndex", this.fieldIndex)
+                .add("valueSchema", this.valueSchema)
+                .toString();
+    }
+}
