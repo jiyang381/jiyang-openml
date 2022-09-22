@@ -87,4 +87,13 @@ public class CategoricalValueSchema extends AbstractValueSchema {
         if (!super.equals(obj)) {
             return false;
         }
-        final CategoricalValueSchema other = (CategoricalValueSchema) ob
+        final CategoricalValueSchema other = (CategoricalValueSchema) obj;
+        return Objects.equals(this.nominalValues, other.nominalValues);
+    }
+
+    @Override
+    protected MoreObjects.ToStringHelper toStringHelper() {
+        return super.toStringHelper()
+                .add("nominalValues", this.nominalValues);
+    }
+}
