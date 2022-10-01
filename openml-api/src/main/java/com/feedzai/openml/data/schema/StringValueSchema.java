@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2018 Feedzai
  *
@@ -18,43 +19,24 @@
 package com.feedzai.openml.data.schema;
 
 /**
- * Represents the type of a feature whose values are numeric (all numeric types up to {@link java.lang.Double}).
+ * Represents the type of a feature whose values are textual.
  *
  * @author Pedro Rijo (pedro.rijo@feedzai.com)
  * @since 0.1.0
  */
-public class NumericValueSchema extends AbstractValueSchema {
+public class StringValueSchema extends AbstractValueSchema {
 
     /**
      * Serial version UID.
      */
-    private static final long serialVersionUID = -4471978224024450702L;
+    private static final long serialVersionUID = 4373362974124446854L;
 
     /**
      * Creates a new instance.
      *
-     * @param allowMissing A flag that indicates whether missing values are allowed.
+     * @param allowMissing A flag that indicathes whether missing values shold be allowed.
      */
-    public NumericValueSchema(final boolean allowMissing) {
+    public StringValueSchema(final boolean allowMissing) {
         super(allowMissing);
-    }
-
-    @Override
-    public boolean validate(final String value) {
-        if (!super.validate(value)) {
-            return false;
-        }
-
-        if (value == null) {
-            return true;
-        }
-
-        try {
-            Double.valueOf(value);
-            return true;
-
-        } catch (final NumberFormatException e) {
-            return false;
-        }
     }
 }
