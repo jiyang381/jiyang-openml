@@ -29,4 +29,16 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 public interface ClassificationMLModel extends MachineLearningModel {
 
     /**
-     * Calculates 
+     * Calculates the class probabilities distribution for an {@link Instance}.
+     *
+     * @param instance The {@link Instance} to be classified.
+     * @return An array of doubles with class probabilities distribution.
+     */
+    double[] getClassDistribution(Instance instance);
+
+    /**
+     * Classifies an {@link Instance} according to the classes provided by the {@link DatasetSchema} feed to the algorithm.
+     *
+     * @param instance The {@link Instance} to be classified.
+     * @return The index of the class nominal value according to the {@link DatasetSchema}
+   
