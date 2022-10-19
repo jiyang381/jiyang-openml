@@ -17,4 +17,20 @@
 
 package com.feedzai.openml.model;
 
-import com.feedzai.openml.data.schema.DatasetSchem
+import com.feedzai.openml.data.schema.DatasetSchema;
+import com.feedzai.openml.provider.MachineLearningProvider;
+
+import java.nio.file.Path;
+
+/**
+ * Base interface that every Machine Learning Model should implement.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public interface MachineLearningModel extends AutoCloseable {
+
+    /**
+     * Saves this model into the specified {@link Path}.
+     * The format used is responsibility of the {@link MachineLearningModel} implementation. It should be done in such
+     * a way that t
