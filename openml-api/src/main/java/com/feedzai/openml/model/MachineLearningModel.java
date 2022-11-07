@@ -33,4 +33,18 @@ public interface MachineLearningModel extends AutoCloseable {
     /**
      * Saves this model into the specified {@link Path}.
      * The format used is responsibility of the {@link MachineLearningModel} implementation. It should be done in such
-     * a way that t
+     * a way that the corresponding {@link MachineLearningProvider} can load the binary
+     * representation.
+     *
+     * @param dir  The path to a directory where to save the model.
+     * @param name The name of the model.
+     * @return A boolean indicating whether the save was successful or not.
+     */
+    boolean save(Path dir, String name);
+
+    /**
+     * Gets the {@link DatasetSchema} associated with this Machine Learning Model.
+     *
+     * @return The Machine Learning Model respective DatasetSchema.
+     */
+    DatasetSch
