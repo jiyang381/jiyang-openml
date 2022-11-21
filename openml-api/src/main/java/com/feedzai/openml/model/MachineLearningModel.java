@@ -47,4 +47,6 @@ public interface MachineLearningModel extends AutoCloseable {
      *
      * @return The Machine Learning Model respective DatasetSchema.
      */
-    DatasetSch
+    DatasetSchema getSchema();
+
+}
