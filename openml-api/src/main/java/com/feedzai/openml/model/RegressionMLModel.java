@@ -29,4 +29,12 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 public interface RegressionMLModel extends MachineLearningModel {
 
     /**
-     * Predicts the value of the target feat
+     * Predicts the value of the target feature of the given {@link Instance}.
+     * The target feature is specified by the {@link DatasetSchema} feed into the algorithm.
+     *
+     * @param instance The {@link Instance} to be predicted.
+     * @return The value predicted.
+     */
+    double predict(Instance instance);
+
+}
