@@ -18,4 +18,18 @@
 package com.feedzai.openml.provider;
 
 import com.feedzai.openml.model.MachineLearningModel;
-import com.feedzai.openml.provider.descriptor.MLAlgorithm
+import com.feedzai.openml.provider.descriptor.MLAlgorithmDescriptor;
+import com.feedzai.openml.provider.model.MachineLearningModelLoader;
+
+import java.util.Optional;
+import java.util.Set;
+
+/**
+ * An interface representing a service to provide {@link MachineLearningModel}.
+ * This interface is not public because implementations should use one of the sub interfaces available.
+ *
+ * @param <T> The generic type of {@link MachineLearningModelLoader} this entity is able to retrieve.
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public interface MachineLearningProvider<T extends MachineLe
