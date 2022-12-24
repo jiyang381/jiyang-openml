@@ -49,4 +49,13 @@ public interface MachineLearningProvider<T extends MachineLearningModelLoader<?>
     Set<MLAlgorithmDescriptor> getAlgorithms();
 
     /**
-     * Retrieves the {@link Optional} {@link MachineLearningModelLoader} responsible for insta
+     * Retrieves the {@link Optional} {@link MachineLearningModelLoader} responsible for instantiating the {@link MachineLearningModel}
+     * described by the given {@code algorithmName}.
+     *
+     * @param algorithmName The textual representation of the {@link MachineLearningModel}.
+     * @return Returns an empty {@link Optional} if there is no {@link MachineLearningModelLoader} for the given
+     * algorithm name, or the {@link MachineLearningModelLoader} associated with the {@link MachineLearningModel}
+     * described by the given algorithm name otherwise.
+     */
+    Optional<T> getModelCreator(String algorithmName);
+}
