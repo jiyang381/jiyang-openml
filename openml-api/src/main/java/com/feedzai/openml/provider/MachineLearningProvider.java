@@ -32,4 +32,21 @@ import java.util.Set;
  * @author Pedro Rijo (pedro.rijo@feedzai.com)
  * @since 0.1.0
  */
-public interface MachineLearningProvider<T extends MachineLe
+public interface MachineLearningProvider<T extends MachineLearningModelLoader<?>> {
+
+    /**
+     * Returns the name of the provider implementing this interface.
+     *
+     * @return The textual representation of the provider.
+     */
+    String getName();
+
+    /**
+     * Gets the set of Machine Learning models this provider offers.
+     *
+     * @return The set of {@link MLAlgorithmDescriptor} representing the algorithms this implementation provides.
+     */
+    Set<MLAlgorithmDescriptor> getAlgorithms();
+
+    /**
+     * Retrieves the {@link Optional} {@link MachineLearningModelLoader} responsible for insta
