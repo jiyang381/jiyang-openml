@@ -34,4 +34,21 @@ public class BooleanFieldType implements ModelParameterType {
     /**
      * Defines whether this field defaults to the value true.
      */
-    private fi
+    private final boolean defaultTrue;
+
+    /**
+     * Instantiates a new {@link BooleanFieldType}.
+     *
+     * @param defaultTrue Whether this field defaults to the value true.
+     */
+    public BooleanFieldType(final boolean defaultTrue) {
+        this.defaultTrue = defaultTrue;
+    }
+
+    /**
+     * Whether this field defaults to the value true.
+     *
+     * @return A boolean stating whether the default value of this field is true.
+     */
+    public boolean isDefaultTrue() {
+        return this.defaultT
