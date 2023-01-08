@@ -51,4 +51,19 @@ public class BooleanFieldType implements ModelParameterType {
      * @return A boolean stating whether the default value of this field is true.
      */
     public boolean isDefaultTrue() {
-        return this.defaultT
+        return this.defaultTrue;
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * This method will accept as valid any case variation of
+     * {@code "true"} and {@code "false"} (meaning, it's case insensitive).
+     */
+    @Override
+    public Optional<ParamValidationError> validate(final String parameterName, final String parameterValue) {
+        if (null == parameterValue) {
+            return Optional.of(new ParamValidationError(parameterName, parameterValue, "should not be null"));
+        }
+
+        if (parameterValue.equalsIgnoreCase("true") |
