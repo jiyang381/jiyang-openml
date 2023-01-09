@@ -66,4 +66,22 @@ public class BooleanFieldType implements ModelParameterType {
             return Optional.of(new ParamValidationError(parameterName, parameterValue, "should not be null"));
         }
 
-        if (parameterValue.equalsIgnoreCase("true") |
+        if (parameterValue.equalsIgnoreCase("true") || parameterValue.equalsIgnoreCase("false")) {
+            return Optional.empty();
+        } else {
+            return Optional.of(new ParamValidationError(parameterName, parameterValue, "is not a valid boolean value"));
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.defaultTrue);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return fal
