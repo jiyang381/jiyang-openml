@@ -17,4 +17,28 @@
 
 package com.feedzai.openml.provider.descriptor.fieldtype;
 
-import com.google.common.ba
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Preconditions;
+
+import java.util.Objects;
+import java.util.Optional;
+
+/**
+ * A concrete implementation of a {@link ModelParameterType} for parameters whose values are textual.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class FreeTextFieldType implements ModelParameterType {
+
+    /**
+     * The default value.
+     */
+    private final String defaultValue;
+
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param defaultValue  The default value.
+     */
+ 
