@@ -84,4 +84,16 @@ public class BooleanFieldType implements ModelParameterType {
             return true;
         }
         if (obj == null || getClass() != obj.getClass()) {
-            return fal
+            return false;
+        }
+        final BooleanFieldType other = (BooleanFieldType) obj;
+        return Objects.equals(this.defaultTrue, other.defaultTrue);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("defaultTrue", this.defaultTrue)
+                .toString();
+    }
+}
