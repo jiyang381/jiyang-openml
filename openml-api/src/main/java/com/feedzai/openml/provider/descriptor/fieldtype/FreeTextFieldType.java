@@ -41,4 +41,24 @@ public class FreeTextFieldType implements ModelParameterType {
      *
      * @param defaultValue  The default value.
      */
- 
+    public FreeTextFieldType(final String defaultValue) {
+        this.defaultValue = Preconditions.checkNotNull(defaultValue, "defaultValue can't be null.");
+    }
+
+    @Override
+    public Optional<ParamValidationError> validate(final String parameterName, final String parameterValue) {
+        return Optional.empty();
+    }
+
+    /**
+     * Gets the default value.
+     *
+     * @return The default value.
+     */
+    public String getDefaultValue() {
+        return this.defaultValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(th
