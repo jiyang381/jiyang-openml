@@ -61,4 +61,23 @@ public class FreeTextFieldType implements ModelParameterType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(th
+        return Objects.hash(this.defaultValue);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final FreeTextFieldType other = (FreeTextFieldType) obj;
+        return Objects.equals(this.defaultValue, other.defaultValue);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("defaultValue", this.defaultValue)
+        
