@@ -80,4 +80,6 @@ public class FreeTextFieldType implements ModelParameterType {
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("defaultValue", this.defaultValue)
-        
+                .toString();
+    }
+}
