@@ -41,4 +41,15 @@ public class ParamValidationError {
      * @param message The error message.
      */
     public ParamValidationError(final String message) {
-        this.message = Preconditions.checkNotNull(message,
+        this.message = Preconditions.checkNotNull(message, "message should not be null");
+    }
+
+    /**
+     * Overload constructor to help creating a new instance from the parameter name and value.
+     *
+     * @param parameterName The parameter name.
+     * @param parameterValue The parameter value.
+     * @param reason The reason behind the validation error.
+     */
+    public ParamValidationError(final String parameterName, final String parameterValue, final String reason) {
+        this(String.format("Parameter %s has value %s: %s", parameterName, parameterVal
