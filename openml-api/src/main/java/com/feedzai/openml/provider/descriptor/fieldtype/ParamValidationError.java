@@ -23,4 +23,22 @@ import com.google.common.base.Preconditions;
 import java.util.Objects;
 
 /**
- * A POJO representing a parame
+ * A POJO representing a parameter validation error returned from {@link ModelParameterType#validate(String, String)}.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class ParamValidationError {
+
+    /**
+     * The message describing the error.
+     */
+    private final String message;
+
+    /**
+     * Creates a new instance from the error message.
+     *
+     * @param message The error message.
+     */
+    public ParamValidationError(final String message) {
+        this.message = Preconditions.checkNotNull(message,
