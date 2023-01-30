@@ -77,4 +77,14 @@ public class ParamValidationError {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final Param
+        final ParamValidationError other = (ParamValidationError) obj;
+        return Objects.equals(this.message, other.message);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("message", this.message)
+                .toString();
+    }
+}
