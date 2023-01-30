@@ -52,4 +52,29 @@ public class ParamValidationError {
      * @param reason The reason behind the validation error.
      */
     public ParamValidationError(final String parameterName, final String parameterValue, final String reason) {
-        this(String.format("Parameter %s has value %s: %s", parameterName, parameterVal
+        this(String.format("Parameter %s has value %s: %s", parameterName, parameterValue, reason));
+    }
+
+    /**
+     * Returns the error message.
+     *
+     * @return The textual representation of the error.
+     */
+    public String getMessage() {
+        return this.message;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.message);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Param
