@@ -18,3 +18,21 @@
 package com.feedzai.openml.provider.exception;
 
 /**
+ * Exception for errors occurred during the loading of a ML Model.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class ModelLoadingException extends Exception {
+
+    /**
+     * The serial version UID.
+     */
+    private static final long serialVersionUID = 4223605528751331599L;
+
+    /**
+     * Constructs a new exception with the specified detail message.  The
+     * cause is not initialized, and may subsequently be initialized by
+     * a call to {@link #initCause}.
+     *
+     * @param message the detail message. 
