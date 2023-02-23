@@ -40,4 +40,14 @@ public interface MachineLearningModelLoader<T extends MachineLearningModel> {
      * Loads the {@link MachineLearningModel} that has been serialized into the provided path.
      *
      * @param modelPath The {@link Path} to the location where the model has been persisted.
-     * @param schema    The {@link DatasetSchema} th
+     * @param schema    The {@link DatasetSchema} the model uses.
+     * @return The {@link MachineLearningModel} associated with this entity, ready to be used.
+     * @throws ModelLoadingException If a problem occurred while loading the model.
+     */
+    T loadModel(Path modelPath, DatasetSchema schema) throws ModelLoadingException;
+
+    /**
+     * Validates that the algorithm can be used to load a model with the given {@link DatasetSchema} for the provided
+     * parameters.
+     *
+     * @param modelPath The {@link Path} to the location where the model has been persist
