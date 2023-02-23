@@ -25,4 +25,19 @@ import com.feedzai.openml.provider.exception.ModelLoadingException;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map
+import java.util.Map;
+
+/**
+ * An entity responsible for instantiating a specific {@link MachineLearningModel}.
+ *
+ * @param <T> The {@link MachineLearningModel} this entity is responsible for instantiating.
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public interface MachineLearningModelLoader<T extends MachineLearningModel> {
+
+    /**
+     * Loads the {@link MachineLearningModel} that has been serialized into the provided path.
+     *
+     * @param modelPath The {@link Path} to the location where the model has been persisted.
+     * @param schema    The {@link DatasetSchema} th
