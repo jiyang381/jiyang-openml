@@ -50,4 +50,14 @@ public interface MachineLearningModelLoader<T extends MachineLearningModel> {
      * Validates that the algorithm can be used to load a model with the given {@link DatasetSchema} for the provided
      * parameters.
      *
-     * @param modelPath The {@link Path} to the location where the model has been persist
+     * @param modelPath The {@link Path} to the location where the model has been persisted.
+     * @param schema    The {@link DatasetSchema schema of the dataset} to be feeded into the algorithm.
+     * @param params    The collection of parameters and the corresponding values.
+     * @return A possible empty list of {@link ParamValidationError}s. An empty list means no problems/errors were
+     * found, and therefore the algorithm can be used for a {@link Dataset} with the corresponding {@link DatasetSchema}
+     * and parameters.
+     */
+    List<ParamValidationError> validateForLoad(Path modelPath, DatasetSchema schema, Map<String, String> params);
+
+    /**
+ 
