@@ -67,4 +67,7 @@ public interface MachineLearningModelLoader<T extends MachineLearningModel> {
      *
      * @param modelPath The path where the algorithm has been serialized.
      * @return a optional with the {@link DatasetSchema} used to train a {@link MachineLearningModel}.
-     * @throws ModelLoadingException If a problem oc
+     * @throws ModelLoadingException If a problem occurred while loading the schema.
+     */
+    DatasetSchema loadSchema(Path modelPath) throws ModelLoadingException;
+}
