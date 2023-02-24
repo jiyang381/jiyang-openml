@@ -60,4 +60,11 @@ public interface MachineLearningModelLoader<T extends MachineLearningModel> {
     List<ParamValidationError> validateForLoad(Path modelPath, DatasetSchema schema, Map<String, String> params);
 
     /**
- 
+     * Loads the {@link DatasetSchema} with the data schema used to train a {@link MachineLearningModel}.
+     * <p>
+     * This method assumes that the provided path contains a json (model.json) with the representation of the data
+     * schema. It will return an empty optional if the json file doesn't exist.
+     *
+     * @param modelPath The path where the algorithm has been serialized.
+     * @return a optional with the {@link DatasetSchema} used to train a {@link MachineLearningModel}.
+     * @throws ModelLoadingException If a problem oc
