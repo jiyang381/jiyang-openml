@@ -24,4 +24,16 @@ import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
 import com.feedzai.openml.provider.exception.ModelTrainingException;
 
 import java.nio.file.Path;
-import java.util.
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * An entity responsible for instantiating a specific {@link MachineLearningModel}. It adds the capability of
+ * instantiating a {@link MachineLearningModel} by training it, through the {@link #fit(Dataset, Random, Map)}.
+ *
+ * @param <T> The {@link MachineLearningModel} this entity is responsible for instantiating.
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public interface MachineLearningModelTrainer<T extends MachineLearningModel> extends MachineLearningModelLoa
