@@ -36,4 +36,15 @@ import java.util.Random;
  * @author Pedro Rijo (pedro.rijo@feedzai.com)
  * @since 0.1.0
  */
-public interface MachineLearningModelTrainer<T extends MachineLearningModel> extends MachineLearningModelLoa
+public interface MachineLearningModelTrainer<T extends MachineLearningModel> extends MachineLearningModelLoader<T> {
+
+    /**
+     * Fits the {@link MachineLearningModel} to the given {@link Dataset}.
+     *
+     * @param dataset       The {@link Dataset} containing the data.
+     * @param random        A random object to be used as the source of randomness to allow repeatable results.
+     * @param params        The collection of parameters and the corresponding values.
+     * @return A {@link MachineLearningModel} trained and ready to be used.
+     * @throws ModelTrainingException If any problem occurs training the algorithm.
+     */
+    T fit(Dataset dataset, Random ran
