@@ -47,4 +47,13 @@ public interface MachineLearningModelTrainer<T extends MachineLearningModel> ext
      * @return A {@link MachineLearningModel} trained and ready to be used.
      * @throws ModelTrainingException If any problem occurs training the algorithm.
      */
-    T fit(Dataset dataset, Random ran
+    T fit(Dataset dataset, Random random, Map<String, String> params) throws ModelTrainingException;
+
+    /**
+     * Validates that the algorithm can be used to fit a model with the given {@link DatasetSchema} for the provided
+     * parameters.
+     *
+     * @param pathToPersist The {@link Path} to validate for persistence of the model after fitting.
+     * @param schema    The {@link DatasetSchema schema of the dataset} to be feeded into the algorithm.
+     * @param params    The collection of parameters and the corresponding values.
+     * @return A possible empty list of {@link Pa
