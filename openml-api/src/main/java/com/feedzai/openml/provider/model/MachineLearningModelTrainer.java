@@ -56,4 +56,9 @@ public interface MachineLearningModelTrainer<T extends MachineLearningModel> ext
      * @param pathToPersist The {@link Path} to validate for persistence of the model after fitting.
      * @param schema    The {@link DatasetSchema schema of the dataset} to be feeded into the algorithm.
      * @param params    The collection of parameters and the corresponding values.
-     * @return A possible empty list of {@link Pa
+     * @return A possible empty list of {@link ParamValidationError}s. An empty list means no problems/errors were
+     * found, and therefore the algorithm can be used for a {@link Dataset} with the corresponding {@link DatasetSchema}
+     * and parameters.
+     */
+    List<ParamValidationError> validateForFit(Path pathToPersist, DatasetSchema schema, Map<String, String> params);
+}
