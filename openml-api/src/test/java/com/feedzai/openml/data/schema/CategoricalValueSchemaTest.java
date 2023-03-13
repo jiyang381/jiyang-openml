@@ -122,3 +122,30 @@ public class CategoricalValueSchemaTest {
         final CategoricalValueSchema valueSchema3 = new CategoricalValueSchema(true, NOMINAL_VALUES);
         final Set<String> nominalValues2 = ImmutableSet.of("val0", "val1", "val3");
         final CategoricalValueSchema valueSchema4 = new CategoricalValueSchema(false, nominalValues2);
+
+        assertThat(valueSchema)
+                .isEqualTo(valueSchema)
+                .isEqualTo(valueSchema2)
+                .isNotEqualTo(valueSchema3)
+                .isNotEqualTo(valueSchema4)
+                .isNotEqualTo(null);
+    }
+
+    /**
+     * Tests the hash code implementation.
+     */
+    @Test
+    public void testHashCode() {
+        final CategoricalValueSchema valueSchema = new CategoricalValueSchema(false, NOMINAL_VALUES);
+        final CategoricalValueSchema valueSchema2 = new CategoricalValueSchema(false, NOMINAL_VALUES);
+        final CategoricalValueSchema valueSchema3 = new CategoricalValueSchema(true, NOMINAL_VALUES);
+        final Set<String> nominalValues2 = ImmutableSet.of("val0", "val1", "val3");
+        final CategoricalValueSchema valueSchema4 = new CategoricalValueSchema(false, nominalValues2);
+
+        assertThat(valueSchema.hashCode())
+                .isEqualTo(valueSchema.hashCode())
+                .isEqualTo(valueSchema2.hashCode())
+                .isNotEqualTo(valueSchema3.hashCode())
+                .isNotEqualTo(valueSchema4.hashCode());
+    }
+}
