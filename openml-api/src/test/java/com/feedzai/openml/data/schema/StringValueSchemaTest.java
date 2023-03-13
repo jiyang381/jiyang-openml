@@ -20,4 +20,24 @@ package com.feedzai.openml.data.schema;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
-import st
+import static org.junit.Assert.assertTrue;
+
+/**
+ * Tests the {@link StringValueSchema} validation behaviour.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class StringValueSchemaTest {
+
+    /**
+     * A valid value that should be always valid.
+     */
+    private static final String VALID_VALUE = "valid value";
+
+    /**
+     * Tests the value validation with an instance that allows missing values.
+     */
+    @Test
+    public void testValidateAllowMissing() {
+        final StringValueSchema valueSchema = new StringValueSchema(
