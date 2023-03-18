@@ -52,4 +52,9 @@ public class StringValueSchemaTest {
     @Test
     public void testValidateNotAllowMissing() {
         final StringValueSchema valueSchema = new StringValueSchema(false);
-        assertTrue("Non missing value should always be valid", valu
+        assertTrue("Non missing value should always be valid", valueSchema.validate(VALID_VALUE));
+
+        assertFalse("Missing value should not be valid if specified", valueSchema.validate(AbstractValueSchema.MISSING_VALUE));
+    }
+
+}
