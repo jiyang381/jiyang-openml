@@ -31,4 +31,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BooleanFieldTypeTest extends AbstractConfigFieldTypeTest<BooleanFieldType> {
 
     @Override
-    BooleanFieldType g
+    BooleanFieldType getInstance() {
+        return new BooleanFieldType(true);
+    }
+
+    @Override
+    BooleanFieldType getAnotherInstance() {
+        return new BooleanFieldType(false);
+    }
+
+    /**
+     * Tests the {@link BooleanFieldType#validate(String, String)} method.
+     */
+    @Test
+    public void testValidate() {
+        final BooleanFieldType fieldType = new BooleanFieldType(true);
+
+        assertValidationResult(fieldType, "paramName0", null, true);
+        assertValidationResult(fieldType, "paramName1", "true", false);
+        assertValidationResult(fieldTy
