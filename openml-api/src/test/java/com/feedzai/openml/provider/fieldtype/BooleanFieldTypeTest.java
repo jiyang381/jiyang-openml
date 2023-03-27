@@ -49,4 +49,19 @@ public class BooleanFieldTypeTest extends AbstractConfigFieldTypeTest<BooleanFie
 
         assertValidationResult(fieldType, "paramName0", null, true);
         assertValidationResult(fieldType, "paramName1", "true", false);
-        assertValidationResult(fieldTy
+        assertValidationResult(fieldType, "paramName2", "false", false);
+        assertValidationResult(fieldType, "paramName3", "False", false);
+        assertValidationResult(fieldType, "paramName4", "True", false);
+        assertValidationResult(fieldType, "paramName5", "random", true);
+        assertValidationResult(fieldType, "paramName6", "", true);
+    }
+
+    /**
+     * Tests that the default value.
+     */
+    @Test
+    public void testDefaultValue() {
+        assertThat(new BooleanFieldType(true).isDefaultTrue())
+                .isTrue();
+
+        assertThat(new BooleanFieldType
