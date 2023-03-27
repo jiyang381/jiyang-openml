@@ -64,4 +64,7 @@ public class BooleanFieldTypeTest extends AbstractConfigFieldTypeTest<BooleanFie
         assertThat(new BooleanFieldType(true).isDefaultTrue())
                 .isTrue();
 
-        assertThat(new BooleanFieldType
+        assertThat(new BooleanFieldType(false).isDefaultTrue())
+                .isFalse();
+    }
+}
