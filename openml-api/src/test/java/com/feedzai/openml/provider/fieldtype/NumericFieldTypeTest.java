@@ -25,4 +25,23 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Tests
+ * Tests the behaviour of the {@link NumericFieldType} class.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFieldType> {
+
+    @Override
+    NumericFieldType getInstance() {
+        return NumericFieldType.range(
+                0,
+                42,
+                NumericFieldType.ParameterConfigType.INT,
+                13
+        );
+    }
+
+    @Override
+    NumericFieldType getAnotherInstance() {
+        return NumericFieldType.min(0.0, NumericFie
