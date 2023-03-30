@@ -64,4 +64,13 @@ public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFie
                 defaultValue
         );
 
-        assertValidationResult(fieldType, "param", null, tru
+        assertValidationResult(fieldType, "param", null, true);
+        assertValidationResult(fieldType, "param", "", true);
+        assertValidationResult(fieldType, "param", "non-parsable", true);
+
+        assertValidationResult(fieldType, "param", String.valueOf(minValue - 1), true);
+        assertValidationResult(fieldType, "param", String.valueOf(minValue), false);
+        assertValidationResult(fieldType, "param", String.valueOf(minValue + 1), false);
+
+        assertValidationResult(fieldType, "param", String.valueOf(maxValue - 1), false);
+        assertValidationResult(fieldType, "param", S
