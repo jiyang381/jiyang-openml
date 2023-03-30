@@ -73,4 +73,21 @@ public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFie
         assertValidationResult(fieldType, "param", String.valueOf(minValue + 1), false);
 
         assertValidationResult(fieldType, "param", String.valueOf(maxValue - 1), false);
-        assertValidationResult(fieldType, "param", S
+        assertValidationResult(fieldType, "param", String.valueOf(maxValue), false);
+        assertValidationResult(fieldType, "param", String.valueOf(maxValue + 1), true);
+    }
+
+    /**
+     * Tests that the properties can be fetched correctly.
+     */
+    @Test
+    public void testPropertiesOfType() {
+        final double maxValue = 90.0;
+        final double defaultValue = 1.0;
+        final NumericFieldType type1 =
+                NumericFieldType.max(maxValue, NumericFieldType.ParameterConfigType.DOUBLE, defaultValue);
+
+        assertThat(type1.getDefaultValue())
+                .isEqualTo(defaultValue);
+
+     
