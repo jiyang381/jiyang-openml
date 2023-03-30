@@ -44,4 +44,24 @@ public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFie
 
     @Override
     NumericFieldType getAnotherInstance() {
-        return NumericFieldType.min(0.0, NumericFie
+        return NumericFieldType.min(0.0, NumericFieldType.ParameterConfigType.DOUBLE, 42.42);
+    }
+
+    /**
+     * Tests the {@link NumericFieldType#validate(String, String)} method.
+     */
+    @Test
+    public void testValidate() {
+
+        final int maxValue = 5;
+        final int minValue = -5;
+        final int defaultValue = 0;
+
+        final NumericFieldType fieldType = NumericFieldType.range(
+                minValue,
+                maxValue,
+                NumericFieldType.ParameterConfigType.DOUBLE,
+                defaultValue
+        );
+
+        assertValidationResult(fieldType, "param", null, tru
