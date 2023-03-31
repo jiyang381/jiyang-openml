@@ -90,4 +90,22 @@ public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFie
         assertThat(type1.getDefaultValue())
                 .isEqualTo(defaultValue);
 
-     
+        assertThat(type1.getMaxValue())
+                .isEqualTo(maxValue);
+
+        assertThat(type1.getMinValue())
+                .isEqualTo(-Double.MAX_VALUE);
+
+        assertThat(type1.getParameterType())
+                .isEqualTo(NumericFieldType.ParameterConfigType.DOUBLE);
+    }
+
+    /**
+     * Tests the constructor verifications for invalid values.
+     */
+    @Test
+    public void validateConstructor() {
+
+        assertThatThrownBy(() ->  NumericFieldType.range(-1, 1, null, 0))
+                .as("A NumericFieldType cannot have a null parameter type")
+            
