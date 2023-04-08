@@ -137,3 +137,11 @@ public class NumericFieldTypeTest extends AbstractConfigFieldTypeTest<NumericFie
         assertThatThrownBy(() -> NumericFieldType.range(-1, 1, NumericFieldType.ParameterConfigType.DOUBLE, -2))
                 .as("A  NumericFieldType with a default value smaller than min")
                 .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> NumericFieldType.range(-1, 1, NumericFieldType.ParameterConfigType.DOUBLE, 2))
+                .as("A  NumericFieldType with a default value bigger than max")
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+}
