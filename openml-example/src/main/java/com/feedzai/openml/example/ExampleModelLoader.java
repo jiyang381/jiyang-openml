@@ -17,4 +17,21 @@
 
 package com.feedzai.openml.example;
 
-import com.feedzai.openml.data.schema.CategoricalValue
+import com.feedzai.openml.data.schema.CategoricalValueSchema;
+import com.feedzai.openml.data.schema.DatasetSchema;
+import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
+import com.feedzai.openml.provider.exception.ModelLoadingException;
+import com.feedzai.openml.provider.model.MachineLearningModelLoader;
+import com.google.common.collect.ImmutableList;
+
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * An example model loader.
+ *
+ * @author Nuno Diegues (nuno.diegues@feedzai.com)
+ * @since 0.1.0
+ */
+public class ExampleModelLoader implements MachineLearningModelLoader<ExampleMod
