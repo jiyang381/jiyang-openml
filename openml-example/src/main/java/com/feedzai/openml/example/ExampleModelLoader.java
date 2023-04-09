@@ -34,4 +34,23 @@ import java.util.Map;
  * @author Nuno Diegues (nuno.diegues@feedzai.com)
  * @since 0.1.0
  */
-public class ExampleModelLoader implements MachineLearningModelLoader<ExampleMod
+public class ExampleModelLoader implements MachineLearningModelLoader<ExampleModel> {
+
+    /**
+     * This loader always loads models that predict the field, indicated by this index, to be the class of the
+     * instances.
+     */
+    private final int indexToPredict;
+
+    /**
+     * Model loader.
+     *
+     * @param indexToPredict This loader always loads models that predict the field, indicated by this index, to be the
+     *                       class of the instances.
+     */
+    ExampleModelLoader(final int indexToPredict) {
+        this.indexToPredict = indexToPredict;
+    }
+
+    /**
+  
