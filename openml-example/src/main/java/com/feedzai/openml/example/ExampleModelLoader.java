@@ -64,4 +64,19 @@ public class ExampleModelLoader implements MachineLearningModelLoader<ExampleMod
 
         final int numberClasses = ((CategoricalValueSchema) schema
                 .getFieldSchemas()
-                .get(schema.g
+                .get(schema.getTargetIndex().get())
+                .getValueSchema())
+                .getNominalValues()
+                .size();
+
+        final double[] fixedPrediction = new double[numberClasses];
+        // the JVM already guarantees that all positions are 0
+        // so we change only the one where we predict the class
+        fixedPrediction[this.indexToPredict] = 1.0;
+
+        return new ExampleModel(schema, this.indexToPredict, fixedPrediction);
+    }
+
+    @Override
+    public List<ParamValidationError> validateForLoad(final Path modelPath,
+                                   
