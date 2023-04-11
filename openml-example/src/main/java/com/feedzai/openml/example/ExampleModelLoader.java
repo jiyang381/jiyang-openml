@@ -79,4 +79,14 @@ public class ExampleModelLoader implements MachineLearningModelLoader<ExampleMod
 
     @Override
     public List<ParamValidationError> validateForLoad(final Path modelPath,
-                                   
+                                                      final DatasetSchema schema,
+                                                      final Map<String, String> params) {
+        return ImmutableList.of();
+    }
+
+    @Override
+    public DatasetSchema loadSchema(final Path modelPath) throws ModelLoadingException {
+        throw new ModelLoadingException("You cannot load schemas with this provider.");
+    }
+
+}
