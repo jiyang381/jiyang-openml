@@ -19,4 +19,24 @@ package com.feedzai.openml.example;
 
 import com.feedzai.openml.data.Dataset;
 import com.feedzai.openml.data.schema.DatasetSchema;
-import com.feedzai.openml.provider.descriptor.fiel
+import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
+import com.feedzai.openml.provider.model.MachineLearningModelTrainer;
+import com.google.common.collect.ImmutableList;
+
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * An example model trainer.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since 0.1.0
+ */
+public class ExampleModelTrainer extends ExampleModelLoader implements MachineLearningModelTrainer<ExampleModel> {
+
+    /**
+     * Model trainer.
+     *
+     * @param indexToPredict This loader always loads models that predict the field, indicated by this i
