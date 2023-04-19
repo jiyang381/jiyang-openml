@@ -39,4 +39,22 @@ public class ExampleModelTrainer extends ExampleModelLoader implements MachineLe
     /**
      * Model trainer.
      *
-     * @param indexToPredict This loader always loads models that predict the field, indicated by this i
+     * @param indexToPredict This loader always loads models that predict the field, indicated by this index, to be the
+     *                       class of the instances.
+     */
+    public ExampleModelTrainer(final int indexToPredict) {
+        super(indexToPredict);
+    }
+
+    @Override
+    public ExampleModel fit(final Dataset dataset,
+                            final Random random,
+                            final Map<String, String> params) {
+
+
+        return loadModel(null, dataset.getSchema());
+    }
+
+    @Override
+    public List<ParamValidationError> validateForFit(final Path pathToPersist,
+                                                  
