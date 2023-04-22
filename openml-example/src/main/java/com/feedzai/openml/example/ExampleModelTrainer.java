@@ -57,4 +57,8 @@ public class ExampleModelTrainer extends ExampleModelLoader implements MachineLe
 
     @Override
     public List<ParamValidationError> validateForFit(final Path pathToPersist,
-                                                  
+                                                     final DatasetSchema schema,
+                                                     final Map<String, String> params) {
+        return ImmutableList.of();
+    }
+}
