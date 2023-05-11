@@ -20,4 +20,25 @@ package com.feedzai.openml.example;
 import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.util.data.schema.TestDatasetSchemaBuilder;
-import com.google.common.collect.
+import com.google.common.collect.ImmutableList;
+import org.junit.Test;
+
+import java.nio.file.Path;
+
+import static com.google.common.collect.ImmutableMap.of;
+import static java.nio.file.Paths.get;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+/**
+ * Simple validations on the {@link ExampleModelLoader}.
+ *
+ * @author Henrique Costa (henrique.costa@feedzai.com)
+ * @since 0.1.1
+ */
+public class ExampleModelLoaderTest {
+
+    /**
+     * Tests loading a model.
+     */
+  
