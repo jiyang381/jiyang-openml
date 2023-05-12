@@ -41,4 +41,18 @@ public class ExampleModelLoaderTest {
     /**
      * Tests loading a model.
      */
-  
+    @Test
+    public void loadModel() {
+        final ExampleModelLoader loader = new ExampleModelLoader(0);
+        final Path modelPath = get("dummy");
+        final DatasetSchema testSchema = TestDatasetSchemaBuilder.builder().withCategoricalFields(1).build();
+        assertThat(loader.loadModel(modelPath, testSchema))
+                .as("The result loading a model with the Example Loader")
+                .isNotNull();
+    }
+
+    /**
+     * Tests that {@link ExampleModelLoader} cannot load model with a schema that has no target variable.
+     */
+    @Test
+    
