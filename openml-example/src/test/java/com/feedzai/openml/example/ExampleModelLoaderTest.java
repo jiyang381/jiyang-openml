@@ -67,4 +67,16 @@ public class ExampleModelLoaderTest {
 
     /**
      * Checks that the {@link ExampleModelLoader}'s validation is a NOOP.
-   
+     */
+    @Test
+    public void validateForLoad() {
+        final ExampleModelLoader loader = new ExampleModelLoader(0);
+        final Path modelPath = get("dummy");
+        final DatasetSchema testSchema = TestDatasetSchemaBuilder.builder().withCategoricalFields(1).build();
+        assertThat(loader.validateForLoad(modelPath, testSchema, of()))
+                .as("The result of calling a validation on the Example Loader")
+                .isEmpty();
+    }
+
+    /**
+     * Tests that the {@link ExampleModelLo
