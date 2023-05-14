@@ -55,4 +55,16 @@ public class ExampleModelLoaderTest {
      * Tests that {@link ExampleModelLoader} cannot load model with a schema that has no target variable.
      */
     @Test
-    
+    public final void testLoadModelWithNoSchema() {
+        final ExampleModelLoader loader = new ExampleModelLoader(0);
+        final Path modelPath = get("dummy");
+        final DatasetSchema testSchema = new DatasetSchema(ImmutableList.of());
+        assertThatThrownBy(() -> loader.loadModel(modelPath, testSchema))
+                .as("The of loading a model with a dataset which has no target variable.")
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    /**
+     * Checks that the {@link ExampleModelLoader}'s validation is a NOOP.
+   
