@@ -79,4 +79,13 @@ public class ExampleModelLoaderTest {
     }
 
     /**
-     * Tests that the {@link ExampleModelLo
+     * Tests that the {@link ExampleModelLoader} does not allow loading schemas from models.
+     */
+    @Test
+    public void loadSchema() {
+        final ExampleModelLoader loader = new ExampleModelLoader(0);
+        assertThatThrownBy(() -> loader.loadSchema(get("dummypath")))
+                .as("Attempting to load a schema")
+                .isInstanceOf(ModelLoadingException.class);
+    }
+}
