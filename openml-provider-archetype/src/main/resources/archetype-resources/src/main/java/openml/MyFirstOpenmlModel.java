@@ -96,3 +96,11 @@ public class MyFirstOpenmlModel implements MyOpenmlModel {
 
     @Override
     public DatasetSchema getSchema() {
+        return this.schema;
+    }
+
+    @Override
+    public void close() throws Exception {
+
+    }
+}
