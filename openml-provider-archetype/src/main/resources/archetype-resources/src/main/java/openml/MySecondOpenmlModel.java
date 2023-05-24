@@ -16,4 +16,21 @@ import java.nio.file.Path;
  * no changes have been made. It's only purpose it's to have a provider with
  * more than one algorithm.
  */
-public class MySecondOpenmlModel implements MyOpenmlMode
+public class MySecondOpenmlModel implements MyOpenmlModel {
+
+    public static final MLAlgorithmDescriptor DESCRIPTOR = new MLAlgorithmDescriptor(
+            "MySecondOpenmlModel",
+            ImmutableSet.of(),
+            MachineLearningAlgorithmType.SUPERVISED_BINARY_CLASSIFICATION,
+            MyFirstOpenmlModel.genURL("https://github.com/feedzai/feedzai-openml")
+    );
+
+    private final DatasetSchema schema;
+
+    public MySecondOpenmlModel(final DatasetSchema schema) {
+        this.schema = schema;
+    }
+
+    @Override
+    public double[] getClassDistribution(final Instance instance) {
+    
