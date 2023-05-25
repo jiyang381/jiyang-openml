@@ -33,4 +33,27 @@ public class MySecondOpenmlModel implements MyOpenmlModel {
 
     @Override
     public double[] getClassDistribution(final Instance instance) {
-    
+        final int numClassValues = ClassificationDatasetSchemaUtil.getNumClassValues(this.schema);
+        return new double[numClassValues];
+    }
+
+    @Override
+    public int classify(final Instance instance) {
+        return 0;
+    }
+
+    @Override
+    public boolean save(final Path path, final String s) {
+        return false;
+    }
+
+    @Override
+    public DatasetSchema getSchema() {
+        return this.schema;
+    }
+
+    @Override
+    public void close() throws Exception {
+
+    }
+}
