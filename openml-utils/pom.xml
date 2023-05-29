@@ -29,4 +29,18 @@
     <artifactId>openml-utils</artifactId>
 
     <name>Feedzai OpenML Utilities</name>
-    <de
+    <description>Contains the utility classes to help to import a model.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.feedzai</groupId>
+            <artifactId>openml-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.faster
