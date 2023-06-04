@@ -160,3 +160,37 @@ public class MockDataset implements Dataset {
      * @param instanceSize Number of instances the dataset should have.
      * @param random       Random number generator used to generate the instances.
      * @return List with the generated instances.
+     */
+    private List<Instance> generateInstances(final int instanceSize, final Random random) {
+        return IntStream.range(0, instanceSize)
+                .mapToObj(index -> new MockInstance(this.schema, random))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Generates a {@link DatasetSchema} with only numeric fields.
+     *
+     * @param targetValues The set of possible values for the categorical target variable.
+     * @param fieldSize    The number of numeric predictive fields to include in the schema.
+     * @return The generated schema.
+     */
+    public static DatasetSchema generateDefaultSchema(final Set<String> targetValues, final int fieldSize) {
+        final ImmutableList.Builder<FieldSchema> fieldSchemasBuilder = new ImmutableList.Builder<>();
+        final FieldSchema targetVariable = new FieldSchema(
+                "target",
+                0,
+                new CategoricalValueSchema(false, targetValues)
+        );
+        final List<FieldSchema> predictiveFields = IntStream.range(0, fieldSize)
+                .mapToObj(index -> new FieldSchema(
+                        String.format("field%d", index),
+                        index + 1,
+                        new NumericValueSchema(false)
+                )).collect(Collectors.toList());
+
+        fieldSchemasBuilder.add(targetVariable);
+        fieldSchemasBuilder.addAll(predictiveFields);
+
+        return new DatasetSchema(0, fieldSchemasBuilder.build());
+    }
+}
