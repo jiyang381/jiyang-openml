@@ -43,4 +43,24 @@ import java.util.stream.IntStream;
  * <p>
  * By default creates an instance with {@code fieldSize} floating point values ranging [0,10[.
  *
- * @author Luis Reis (
+ * @author Luis Reis (luis.reis@feedzai.com)
+ * @since 0.1.0
+ */
+public class MockInstance implements Instance, Serializable {
+
+    /**
+     * Range for mock values in numeric fields.
+     */
+    private static final double
+            MAX_NUMERIC_MOCK_VALUE = 10,
+            MIN_NUMERIC_MOCK_VALUE = -10;
+
+    /**
+     * Number of random bytes to use when generating mock String values.
+     */
+    private static final int NUM_MOCK_STRING_RANDOM_BYTES = 32;
+
+    /**
+     * The serial version UID.
+     */
+    private static final long serialVersionUID = -626
