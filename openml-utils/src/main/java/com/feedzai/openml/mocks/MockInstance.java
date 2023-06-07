@@ -63,4 +63,20 @@ public class MockInstance implements Instance, Serializable {
     /**
      * The serial version UID.
      */
-    private static final long serialVersionUID = -626
+    private static final long serialVersionUID = -6261681440631914349L;
+
+    /**
+     * Values of the instance.
+     */
+    private final List<Serializable> values;
+
+    /**
+     * Constructor for the instance based on a given schema.
+     *
+     * @param schema Schema to which this instance will conform.
+     * @param random Random number generator used to generate the instances.
+     */
+    public MockInstance(final DatasetSchema schema, final Random random) {
+        this.values = schema.getFieldSchemas().stream()
+                .map(FieldSchema::getValueSchema)
+                .ma
