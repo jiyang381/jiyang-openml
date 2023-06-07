@@ -23,4 +23,24 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.data.schema.FieldSchema;
 import com.feedzai.openml.data.schema.NumericValueSchema;
 import com.feedzai.openml.data.schema.StringValueSchema;
-import com.feedzai.openml.util.data.ClassificationDatas
+import com.feedzai.openml.util.data.ClassificationDatasetSchemaUtil;
+import com.google.common.base.MoreObjects;
+
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+
+/**
+ * Mock class implementation for an instance.
+ * Used for tests and validation of models.
+ * <p>
+ * By default creates an instance with {@code fieldSize} floating point values ranging [0,10[.
+ *
+ * @author Luis Reis (
