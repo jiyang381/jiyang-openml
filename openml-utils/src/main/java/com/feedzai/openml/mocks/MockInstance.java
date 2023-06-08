@@ -79,4 +79,17 @@ public class MockInstance implements Instance, Serializable {
     public MockInstance(final DatasetSchema schema, final Random random) {
         this.values = schema.getFieldSchemas().stream()
                 .map(FieldSchema::getValueSchema)
-                .ma
+                .map(generateRandomFieldValue(random))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Constructor for an instance with only numeric fields.
+     *
+     * @param numberFieldsSize Number of fields (numeric only) the instance will have.
+     * @param random           Random number generator used to generate the instances.
+     */
+    public MockInstance(final int numberFieldsSize, final Random random) {
+        this.values = IntStream.range(0, numberFieldsSize)
+                .mapToObj(index -> new NumericValueSchema(false))
+                .map(
