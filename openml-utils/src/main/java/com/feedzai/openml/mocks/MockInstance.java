@@ -92,4 +92,27 @@ public class MockInstance implements Instance, Serializable {
     public MockInstance(final int numberFieldsSize, final Random random) {
         this.values = IntStream.range(0, numberFieldsSize)
                 .mapToObj(index -> new NumericValueSchema(false))
-                .map(
+                .map(generateRandomFieldValue(random))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.values);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final MockInstance other = (MockInstance) obj;
+        return Objects.equals(this.values, other.values);
+    }
+
+    @Override
+    public String toString() {
+        ret
