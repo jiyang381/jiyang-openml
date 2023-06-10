@@ -135,4 +135,17 @@ public class MockInstance implements Instance, Serializable {
 
             } else if (valueSchema instanceof StringValueSchema) {
                 // String random value: NUM_MOCK_STRING_RANDOM_BYTES Base64 URL encoded bytes
-                fina
+                final byte[] randomBytes = new byte[NUM_MOCK_STRING_RANDOM_BYTES]; random.nextBytes(randomBytes);
+                final byte[] base64encodedBytes = Base64.getUrlEncoder().encode(randomBytes);
+                return new String(base64encodedBytes);
+
+            } else {
+                // Categorical random value: Index in [0, <Size of Nominal Values>[
+                final int numClassValues = ClassificationDatasetSchemaUtil.getNumClassValues(valueSchema);
+                return (double) random.nextInt(numClassValues);
+            }
+        };
+    }
+
+    /**
+     * Constr
