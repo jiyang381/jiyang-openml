@@ -148,4 +148,27 @@ public class MockInstance implements Instance, Serializable {
     }
 
     /**
-     * Constr
+     * Constructor for the instance.
+     *
+     * @param values Values of the instance.
+     */
+    public MockInstance(final List<Serializable> values) {
+        this.values = values;
+    }
+
+    /**
+     * Constructor for the instance.
+     *
+     * @param values Values of the instance.
+     */
+    public MockInstance(final double[] values) {
+        this.values = Arrays.stream(values).boxed().collect(Collectors.toList());
+    }
+
+    @Override
+    public double getValue(final int index) {
+        return (double) this.values.get(index);
+    }
+
+    @Override
+    public Str
