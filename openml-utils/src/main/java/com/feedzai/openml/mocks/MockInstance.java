@@ -115,4 +115,16 @@ public class MockInstance implements Instance, Serializable {
 
     @Override
     public String toString() {
-        ret
+        return MoreObjects.toStringHelper(this)
+                .add("values", this.values)
+                .toString();
+    }
+
+    /**
+     * Returns a function that generates random values for a field of the instance given the field schema.
+     *
+     * @implNote This method returns a function for better integration with Stream::map.
+     * @param random Random number
+     * @return A function that given a field schema returns a correct random value for that schema.
+     */
+    private Function<AbstractValueSchema, Serializable> gene
