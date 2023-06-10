@@ -127,4 +127,12 @@ public class MockInstance implements Instance, Serializable {
      * @param random Random number
      * @return A function that given a field schema returns a correct random value for that schema.
      */
-    private Function<AbstractValueSchema, Serializable> gene
+    private Function<AbstractValueSchema, Serializable> generateRandomFieldValue(final Random random) {
+        return (AbstractValueSchema valueSchema) -> {
+            if (valueSchema instanceof NumericValueSchema) {
+                // Numeric random value: [MIN_NUMERIC_MOCK_VALUE, MAX_NUMERIC_MOCK_VALUE[
+                return MIN_NUMERIC_MOCK_VALUE + (MAX_NUMERIC_MOCK_VALUE - MIN_NUMERIC_MOCK_VALUE) * random.nextDouble();
+
+            } else if (valueSchema instanceof StringValueSchema) {
+                // String random value: NUM_MOCK_STRING_RANDOM_BYTES Base64 URL encoded bytes
+                fina
