@@ -171,4 +171,7 @@ public class MockInstance implements Instance, Serializable {
     }
 
     @Override
-    public Str
+    public String getStringValue(final int index) {
+        return (String) this.values.get(index);
+    }
+}
