@@ -20,4 +20,21 @@ import com.feedzai.openml.provider.descriptor.MLAlgorithmDescriptor;
 import com.feedzai.openml.provider.descriptor.MachineLearningAlgorithmType;
 import com.google.common.collect.ImmutableSet;
 
-impo
+import static com.feedzai.openml.util.algorithm.MLAlgorithmEnum.createDescriptor;
+
+/**
+ * Specifies the algorithms provided by a generic provider.
+ *
+ * @author Luis Reis (luis.reis@feedzai.com)
+ * @since 0.1.0
+ */
+public enum GenericAlgorithm implements MLAlgorithmEnum {
+
+    /**
+     * Generic classification algorithm.
+     * Models that use this algorithm should implement the classify and getClassDistribution function.
+     */
+    GENERIC_CLASSIFICATION(createDescriptor(
+            "Generic Classification",
+            ImmutableSet.of(),
+            MachineLearningAl
