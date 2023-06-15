@@ -37,4 +37,26 @@ public enum GenericAlgorithm implements MLAlgorithmEnum {
     GENERIC_CLASSIFICATION(createDescriptor(
             "Generic Classification",
             ImmutableSet.of(),
-            MachineLearningAl
+            MachineLearningAlgorithmType.MULTI_CLASSIFICATION,
+            "http://feedzai.com"
+    ));
+
+    /**
+     * {@link MLAlgorithmDescriptor} for this algorithm.
+     */
+    public final MLAlgorithmDescriptor descriptor;
+
+    /**
+     * Constructor.
+     *
+     * @param descriptor {@link MLAlgorithmDescriptor} for this algorithm.
+     */
+    GenericAlgorithm(final MLAlgorithmDescriptor descriptor) {
+        this.descriptor = descriptor;
+    }
+
+    @Override
+    public MLAlgorithmDescriptor getAlgorithmDescriptor() {
+        return this.descriptor;
+    }
+}
