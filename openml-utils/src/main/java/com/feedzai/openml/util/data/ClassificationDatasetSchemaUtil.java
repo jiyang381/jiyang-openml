@@ -19,4 +19,23 @@ package com.feedzai.openml.util.data;
 
 import com.feedzai.openml.data.schema.AbstractValueSchema;
 import com.feedzai.openml.data.schema.CategoricalValueSchema;
-import com.feedzai.openm
+import com.feedzai.openml.data.schema.DatasetSchema;
+import com.feedzai.openml.data.schema.FieldSchema;
+import com.feedzai.openml.model.ClassificationMLModel;
+
+import java.util.Optional;
+import java.util.function.Function;
+
+/**
+ * Utilities for manipulating a {@link DatasetSchema} of a {@link ClassificationMLModel classification ML problem}.
+ *
+ * @author Nuno Diegues (nuno.diegues@feedzai.com)
+ * @since 0.1.0
+ */
+public final class ClassificationDatasetSchemaUtil {
+
+    /**
+     * Private constructor for utility class.
+     */
+    private ClassificationDatasetSchemaUtil() { }
+
