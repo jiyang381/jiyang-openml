@@ -39,3 +39,14 @@ public final class ClassificationDatasetSchemaUtil {
      */
     private ClassificationDatasetSchemaUtil() { }
 
+    /**
+     * Gets the number of classes in the given schema's target variable assuming that it is for a classification
+     * problem.
+     *
+     * @param datasetSchema The {@link DatasetSchema}.
+     * @return The number of classes on the target variable, if a target variable is defined, or {@link Optional#empty()} otherwise.
+     */
+    public static Optional<Integer> getNumClassValues(final DatasetSchema datasetSchema) {
+        return datasetSchema.getTargetIndex()
+                .map(datasetSchema.getFieldSchemas()::get)
+                .map(
