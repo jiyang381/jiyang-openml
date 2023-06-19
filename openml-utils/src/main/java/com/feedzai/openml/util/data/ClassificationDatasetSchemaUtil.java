@@ -49,4 +49,16 @@ public final class ClassificationDatasetSchemaUtil {
     public static Optional<Integer> getNumClassValues(final DatasetSchema datasetSchema) {
         return datasetSchema.getTargetIndex()
                 .map(datasetSchema.getFieldSchemas()::get)
-                .map(
+                .map(FieldSchema::getValueSchema)
+                .map(ClassificationDatasetSchemaUtil::getNumClassValues);
+    }
+
+    /**
+     * Gets the number of classes in the given schema's target variable assuming that it is for a classification
+     * problem.
+     *
+     * @param targetValueSchema The {@link AbstractValueSchema} of the target variable.
+     * @return The number of classes on the target variable.
+     */
+    public static int getNumClassValues(final AbstractValueSchema targetValueSchema) {
+        return withCategoricalValueSchema(
