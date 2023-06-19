@@ -72,4 +72,11 @@ public final class ClassificationDatasetSchemaUtil {
      * This method checks wether the given {@link AbstractValueSchema} is a {@link CategoricalValueSchema}, and
      * executes the given {@link Function block} if true, otherwise returns an empty {@link Optional}.
      *
-     * 
+     * @param targetValueSchema The {@link AbstractValueSchema} of the target variable.
+     * @param block The function to execute if the given target variable schema is {@link CategoricalValueSchema categorical}.
+     * @param <T> The return type of the given {@code block}.
+     * @return An {@link Optional} with the return value of the given {@link Function block} if the
+     * received {@link AbstractValueSchema} is a {@link CategoricalValueSchema},
+     * otherwise it will return an empty {@link Optional}.
+     */
+    public static <T> Optional<T> withCategoricalValueSchema(final AbstractValueS
