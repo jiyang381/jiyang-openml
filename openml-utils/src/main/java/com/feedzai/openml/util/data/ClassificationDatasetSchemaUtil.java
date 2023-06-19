@@ -62,3 +62,14 @@ public final class ClassificationDatasetSchemaUtil {
      */
     public static int getNumClassValues(final AbstractValueSchema targetValueSchema) {
         return withCategoricalValueSchema(
+                targetValueSchema,
+                categoricalValueSchema -> categoricalValueSchema.getNominalValues().size()
+        ).orElseThrow(() -> new RuntimeException("The target variable is not a categorical value: " + targetValueSchema));
+    }
+
+    /**
+     * Template method to execute custom functions on the {@link CategoricalValueSchema}.
+     * This method checks wether the given {@link AbstractValueSchema} is a {@link CategoricalValueSchema}, and
+     * executes the given {@link Function block} if true, otherwise returns an empty {@link Optional}.
+     *
+     * 
