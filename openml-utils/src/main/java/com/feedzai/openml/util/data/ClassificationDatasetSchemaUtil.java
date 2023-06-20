@@ -79,4 +79,11 @@ public final class ClassificationDatasetSchemaUtil {
      * received {@link AbstractValueSchema} is a {@link CategoricalValueSchema},
      * otherwise it will return an empty {@link Optional}.
      */
-    public static <T> Optional<T> withCategoricalValueSchema(final AbstractValueS
+    public static <T> Optional<T> withCategoricalValueSchema(final AbstractValueSchema targetValueSchema, final Function<CategoricalValueSchema, T> block) {
+        if (targetValueSchema instanceof CategoricalValueSchema) {
+            return Optional.of(block.apply(((CategoricalValueSchema) targetValueSchema)));
+        } else {
+            return Optional.empty();
+        }
+    }
+}
