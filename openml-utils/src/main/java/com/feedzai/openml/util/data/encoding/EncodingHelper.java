@@ -168,3 +168,48 @@ public final class EncodingHelper implements Serializable {
      * to the appropriate value.
      * <p>
      * Failed conversions will result in {@link Double#NaN}.
+     *
+     * @param value The value to convert.
+     * @param index The 0-based index of the field the value is coming from.
+     * @return The value encoded as double (in case of a Numeric or Categorical field) or as a String (in case of a String field).
+     */
+    public Serializable encode(final Serializable value, final int index) {
+        return this.encoders.get(index).apply(value);
+    }
+
+    /**
+     * The number of fields known by the encoder.
+     *
+     * @return The number of fields.
+     */
+    public int numberFields() {
+        return this.encoders.size();
+    }
+
+    /**
+     * Wraps encoding functions to handle null field values or failed conversions.
+     *
+     * @param value          The value to convert.
+     * @param function       The encoding function.
+     * @param coalescedValue The value to return in case {@code value} is null or the encoding function fails.
+     * @return The converted field value if non-null and conversion is successful. Null otherwise.
+     * @since 0.1.0
+     */
+    private static Object handleNullOrFailed(final Serializable value,
+                                             final SerializableEncoder function,
+                                             final Object coalescedValue) {
+        try {
+            return value == null ? coalescedValue : function.apply(value);
+        } catch (final Exception e) {
+            // Not logging on purpose since this may be called a LOT of times
+            return coalescedValue;
+        }
+    }
+
+    /**
+     * Interface to ensure that all converters are Serializable so that this class is too.
+     */
+    public interface SerializableEncoder extends Serializable, Function<Serializable, Serializable> {
+
+    }
+}
