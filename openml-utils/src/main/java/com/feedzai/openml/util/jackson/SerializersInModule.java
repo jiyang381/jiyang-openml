@@ -32,4 +32,22 @@ import com.feedzai.openml.util.jackson.serializers.FieldSchemaSerializer;
  * A jackson {@link SimpleModule} that aggregates all the serializers and deserializers that  exist in this module.
  *
  * @author Paulo Pereira (paulo.pereira@feedzai.com)
- * @since
+ * @since 0.1.0
+ */
+public class SerializersInModule extends SimpleModule {
+
+    /**
+     * Constructor of this object.
+     */
+    public SerializersInModule() {
+        configureForDatasetSchema();
+        configureForFieldSchema();
+        configureForValueSchema();
+    }
+
+    /**
+     * Adds the serializers and deserializer of {@link AbstractValueSchema} to the module.
+     */
+    private void configureForValueSchema() {
+        this.addSerializer(AbstractValueSchema.class, new AbstractValueSchemaSerializer());
+        this.addDeserializer(AbstractValueSchema.cla
