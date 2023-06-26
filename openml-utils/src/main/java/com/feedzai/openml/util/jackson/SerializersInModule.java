@@ -22,4 +22,14 @@ import com.feedzai.openml.data.schema.AbstractValueSchema;
 import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.data.schema.FieldSchema;
 import com.feedzai.openml.util.jackson.deserializer.AbstractValueSchemaDeserializer;
-im
+import com.feedzai.openml.util.jackson.deserializer.DatasetSchemaDeserializer;
+import com.feedzai.openml.util.jackson.deserializer.FieldSchemaDeserializer;
+import com.feedzai.openml.util.jackson.serializers.AbstractValueSchemaSerializer;
+import com.feedzai.openml.util.jackson.serializers.DatasetSchemaSerializer;
+import com.feedzai.openml.util.jackson.serializers.FieldSchemaSerializer;
+
+/**
+ * A jackson {@link SimpleModule} that aggregates all the serializers and deserializers that  exist in this module.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since
