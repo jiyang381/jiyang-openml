@@ -50,4 +50,20 @@ public class SerializersInModule extends SimpleModule {
      */
     private void configureForValueSchema() {
         this.addSerializer(AbstractValueSchema.class, new AbstractValueSchemaSerializer());
-        this.addDeserializer(AbstractValueSchema.cla
+        this.addDeserializer(AbstractValueSchema.class, new AbstractValueSchemaDeserializer());
+    }
+
+    /**
+     * Adds the serializers and deserializer of {@link FieldSchema} to the module.
+     */
+    private void configureForFieldSchema() {
+        this.addSerializer(FieldSchema.class, new FieldSchemaSerializer());
+        this.addDeserializer(FieldSchema.class, new FieldSchemaDeserializer());
+    }
+
+    /**
+     * Adds the serializers and deserializer of {@link DatasetSchema} to the module.
+     */
+    private void configureForDatasetSchema() {
+        this.addSerializer(DatasetSchema.class, new DatasetSchemaSerializer());
+        this.addDeseri
