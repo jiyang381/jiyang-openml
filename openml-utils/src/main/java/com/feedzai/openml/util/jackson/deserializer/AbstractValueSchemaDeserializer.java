@@ -24,4 +24,21 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import
+import com.feedzai.openml.data.schema.AbstractValueSchema;
+import com.feedzai.openml.data.schema.CategoricalValueSchema;
+import com.feedzai.openml.data.schema.NumericValueSchema;
+import com.feedzai.openml.data.schema.StringValueSchema;
+
+import java.io.IOException;
+import java.util.SortedSet;
+
+/**
+ * Custom {@link JsonDeserializer} for known {@link AbstractValueSchema} instances.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractValueSchema> {
+
+    /**
+     * Name of the 
