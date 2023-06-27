@@ -66,4 +66,6 @@ public class SerializersInModule extends SimpleModule {
      */
     private void configureForDatasetSchema() {
         this.addSerializer(DatasetSchema.class, new DatasetSchemaSerializer());
-        this.addDeseri
+        this.addDeserializer(DatasetSchema.class, new DatasetSchemaDeserializer());
+    }
+}
