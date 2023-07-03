@@ -80,4 +80,16 @@ public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractVal
     /**
      * Constructor of this object.
      *
-    
+     * @param vc Type of values that this deserializer handles.
+     */
+    public AbstractValueSchemaDeserializer(final Class<?> vc) {
+        super(vc);
+    }
+
+    @Override
+    public AbstractValueSchema deserialize(final JsonParser jsonParser,
+                                           final DeserializationContext deserializationContext) throws IOException {
+        final JsonNode treeNode = jsonParser.getCodec().readTree(jsonParser);
+
+        final String fieldType = treeNode.get(VALUE_TYPE).textValue();
+        final boolean allowMissing = treeNode.get(ALLOW_MISSING).booleanVal
