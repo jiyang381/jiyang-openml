@@ -41,4 +41,21 @@ import java.util.SortedSet;
 public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractValueSchema> {
 
     /**
-     * Name of the 
+     * Name of the json field that indicates whether missing values should be allowed.
+     */
+    public static final String ALLOW_MISSING = "allowMissing";
+
+    /**
+     * Name of the json field that indicates the type of the field.
+     */
+    public static final String VALUE_TYPE = "@type";
+
+    /**
+     * Name of the json value for {@link #VALUE_TYPE} that identifies a numeric field.
+     */
+    public static final String NUMERIC_TYPE = "numeric";
+
+    /**
+     * Name of the json value for {@link #VALUE_TYPE} that identifies a string field.
+     */
+    public static final Strin
