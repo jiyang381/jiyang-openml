@@ -58,4 +58,26 @@ public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractVal
     /**
      * Name of the json value for {@link #VALUE_TYPE} that identifies a string field.
      */
-    public static final Strin
+    public static final String STRING_TYPE = "string";
+
+    /**
+     * Name of the json value for {@link #VALUE_TYPE} that identifies a categorical field.
+     */
+    public static final String CATEGORICAL_TYPE = "categorical";
+
+    /**
+     * Name of the json field that contains the nominal values of a categorical field.
+     */
+    public static final String NOMINAL_VALUES = "nominalValues";
+
+    /**
+     * Constructor of this object.
+     */
+    public AbstractValueSchemaDeserializer() {
+        this(null);
+    }
+
+    /**
+     * Constructor of this object.
+     *
+    
