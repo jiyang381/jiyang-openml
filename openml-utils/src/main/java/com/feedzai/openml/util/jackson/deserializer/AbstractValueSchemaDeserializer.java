@@ -92,4 +92,17 @@ public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractVal
         final JsonNode treeNode = jsonParser.getCodec().readTree(jsonParser);
 
         final String fieldType = treeNode.get(VALUE_TYPE).textValue();
-        final boolean allowMissing = treeNode.get(ALLOW_MISSING).booleanVal
+        final boolean allowMissing = treeNode.get(ALLOW_MISSING).booleanValue();
+
+        if (CATEGORICAL_TYPE.equals(fieldType)) {
+            final TreeNode fieldNode = treeNode.get(NOMINAL_VALUES);
+            final SortedSet<String> nominalValues = jsonParser.getCodec().readValue(
+                    fieldNode.traverse(jsonParser.getCodec()),
+                    new TypeReference<SortedSet<String>>() { }
+            );
+            return new CategoricalValueSchema(allowMissing, nominalValues);
+
+        } else if (NUMERIC_TYPE.equals(fieldType)) {
+            return new NumericValueSchema(allowMissing);
+
+        } else if (STR
