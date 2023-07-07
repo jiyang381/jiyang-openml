@@ -105,4 +105,12 @@ public class AbstractValueSchemaDeserializer extends StdDeserializer<AbstractVal
         } else if (NUMERIC_TYPE.equals(fieldType)) {
             return new NumericValueSchema(allowMissing);
 
-        } else if (STR
+        } else if (STRING_TYPE.equals(fieldType)) {
+            return new StringValueSchema(allowMissing);
+        } else {
+            throw new UnsupportedOperationException(
+                    String.format("A unknown field type [%s] was found.", fieldType)
+            );
+        }
+    }
+}
