@@ -19,4 +19,17 @@ package com.feedzai.openml.util.jackson.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.TreeNode;
-im
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.feedzai.openml.data.schema.AbstractValueSchema;
+import com.feedzai.openml.data.schema.FieldSchema;
+
+import java.io.IOException;
+
+/**
+ * Custom {@link JsonDeserializer} for known {@link FieldSchema} instances.
+ *
+ * @author Paulo Pereira (paulo.pereira@
