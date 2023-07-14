@@ -50,4 +50,26 @@ public class FieldSchemaDeserializer extends StdDeserializer<FieldSchema> {
     /**
      * Name of the json field that contains the value of the field.
      */
-    public static final String VALUE_SCHEMA = "va
+    public static final String VALUE_SCHEMA = "valueSchema";
+
+    /**
+     * Constructor of this object.
+     */
+    public FieldSchemaDeserializer() {
+        this(null);
+    }
+
+    /**
+     * Constructor of this object.
+     *
+     * @param vc Type of values that this deserializer handles.
+     */
+    public FieldSchemaDeserializer(final Class<?> vc) {
+        super(vc);
+    }
+
+    @Override
+    public FieldSchema deserialize(final JsonParser jsonParser,
+                            final DeserializationContext deserializationContext) throws IOException {
+
+        final JsonNode treeNode = jsonParser.ge
