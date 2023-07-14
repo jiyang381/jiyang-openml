@@ -32,4 +32,22 @@ import java.io.IOException;
 /**
  * Custom {@link JsonDeserializer} for known {@link FieldSchema} instances.
  *
- * @author Paulo Pereira (paulo.pereira@
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class FieldSchemaDeserializer extends StdDeserializer<FieldSchema> {
+
+    /**
+     * Name of the json field that contains the name of the field.
+     */
+    public static final String FIELD_NAME = "fieldName";
+
+    /**
+     * Name of the json field that contains the index of the field.
+     */
+    public static final String FIELD_INDEX = "fieldIndex";
+
+    /**
+     * Name of the json field that contains the value of the field.
+     */
+    public static final String VALUE_SCHEMA = "va
