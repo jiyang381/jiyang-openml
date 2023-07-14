@@ -72,4 +72,17 @@ public class FieldSchemaDeserializer extends StdDeserializer<FieldSchema> {
     public FieldSchema deserialize(final JsonParser jsonParser,
                             final DeserializationContext deserializationContext) throws IOException {
 
-        final JsonNode treeNode = jsonParser.ge
+        final JsonNode treeNode = jsonParser.getCodec().readTree(jsonParser);
+
+        final String fieldName = treeNode.get(FIELD_NAME).textValue();
+        final int fieldIndex = (int) treeNode.get(FIELD_INDEX).numberValue();
+
+        final TreeNode valueSchemaNode = treeNode.get(VALUE_SCHEMA);
+        final AbstractValueSchema valueSchema = jsonParser.getCodec().readValue(
+                valueSchemaNode.traverse(jsonParser.getCodec()),
+                new TypeReference<AbstractValueSchema>() { }
+        );
+
+        return new FieldSchema(fieldName, fieldIndex, valueSchema);
+    }
+}
