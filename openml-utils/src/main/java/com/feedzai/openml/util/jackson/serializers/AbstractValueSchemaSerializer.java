@@ -15,4 +15,14 @@
  *
  */
 
-package com.feedzai.openm
+package com.feedzai.openml.util.jackson.serializers;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.feedzai.openml.data.schema.AbstractValueSchema;
+import com.feedzai.openml.data.schema.CategoricalValueSchema;
+import com.feedzai.openml.data.schema.NumericValueSchema;
+import com.feedzai.openml.data.schema.StringValueSchema;
+import com.feedzai.openml.util.jackson.d
