@@ -25,4 +25,28 @@ import com.feedzai.openml.data.schema.AbstractValueSchema;
 import com.feedzai.openml.data.schema.CategoricalValueSchema;
 import com.feedzai.openml.data.schema.NumericValueSchema;
 import com.feedzai.openml.data.schema.StringValueSchema;
-import com.feedzai.openml.util.jackson.d
+import com.feedzai.openml.util.jackson.deserializer.AbstractValueSchemaDeserializer;
+
+import java.io.IOException;
+
+/**
+ * Custom {@link JsonSerializer} for known {@link AbstractValueSchema} instances.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class AbstractValueSchemaSerializer extends StdSerializer<AbstractValueSchema> {
+
+    /**
+     * Constructor of this object.
+     */
+    public AbstractValueSchemaSerializer() {
+        this(null);
+    }
+
+    /**
+     * Constructor of this object.
+     *
+     * @param t Nominal type supported.
+     */
+    public AbstractValueSchem
