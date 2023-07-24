@@ -49,4 +49,17 @@ public class AbstractValueSchemaSerializer extends StdSerializer<AbstractValueSc
      *
      * @param t Nominal type supported.
      */
-    public AbstractValueSchem
+    public AbstractValueSchemaSerializer(final Class<AbstractValueSchema> t) {
+        super(t);
+    }
+
+    @Override
+    public void serialize(final AbstractValueSchema valueSchema,
+                          final JsonGenerator jsonGenerator,
+                          final SerializerProvider serializerProvider) throws IOException {
+
+        jsonGenerator.writeStartObject();
+
+        if (valueSchema instanceof CategoricalValueSchema) {
+            jsonGenerator.writeStringField(AbstractValueSchemaDeserializer.VALUE_TYPE, AbstractValueSchemaDeserializer.CATEGORICAL_TYPE);
+ 
