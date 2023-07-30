@@ -62,4 +62,10 @@ public class AbstractValueSchemaSerializer extends StdSerializer<AbstractValueSc
 
         if (valueSchema instanceof CategoricalValueSchema) {
             jsonGenerator.writeStringField(AbstractValueSchemaDeserializer.VALUE_TYPE, AbstractValueSchemaDeserializer.CATEGORICAL_TYPE);
- 
+            jsonGenerator.writeObjectField(AbstractValueSchemaDeserializer.NOMINAL_VALUES, ((CategoricalValueSchema) valueSchema).getNominalValues());
+        } else if (valueSchema instanceof NumericValueSchema) {
+            jsonGenerator.writeStringField(AbstractValueSchemaDeserializer.VALUE_TYPE, AbstractValueSchemaDeserializer.NUMERIC_TYPE);
+        } else if (valueSchema instanceof StringValueSchema) {
+            jsonGenerator.writeStringField(AbstractValueSchemaDeserializer.VALUE_TYPE, AbstractValueSchemaDeserializer.STRING_TYPE);
+        } else {
+            thr
