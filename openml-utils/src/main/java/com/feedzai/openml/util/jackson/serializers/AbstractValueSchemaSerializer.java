@@ -68,4 +68,13 @@ public class AbstractValueSchemaSerializer extends StdSerializer<AbstractValueSc
         } else if (valueSchema instanceof StringValueSchema) {
             jsonGenerator.writeStringField(AbstractValueSchemaDeserializer.VALUE_TYPE, AbstractValueSchemaDeserializer.STRING_TYPE);
         } else {
-            thr
+            throw new UnsupportedOperationException(
+                    String.format("A unknown field type [%s] was found.", valueSchema)
+            );
+        }
+
+        jsonGenerator.writeBooleanField(AbstractValueSchemaDeserializer.ALLOW_MISSING, valueSchema.isAllowMissing());
+        jsonGenerator.writeEndObject();
+    }
+}
+
