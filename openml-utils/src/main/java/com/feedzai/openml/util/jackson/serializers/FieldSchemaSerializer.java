@@ -18,4 +18,23 @@
 package com.feedzai.openml.util.jackson.serializers;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databi
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.feedzai.openml.data.schema.FieldSchema;
+
+import java.io.IOException;
+
+/**
+ * Custom {@link JsonSerializer} for known {@link FieldSchema} instances.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class FieldSchemaSerializer extends StdSerializer<FieldSchema> {
+
+    /**
+     * Constructor of this object.
+     */
+    public FieldSchemaSerializer() {
+        this(null
