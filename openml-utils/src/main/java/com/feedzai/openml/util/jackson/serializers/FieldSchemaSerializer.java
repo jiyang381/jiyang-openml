@@ -56,4 +56,8 @@ public class FieldSchemaSerializer extends StdSerializer<FieldSchema> {
 
         jsonGenerator.writeStartObject();
         jsonGenerator.writeNumberField("fieldIndex", fieldSchema.getFieldIndex());
-        jsonGenerator
+        jsonGenerator.writeStringField("fieldName", fieldSchema.getFieldName());
+        jsonGenerator.writeObjectField("valueSchema", fieldSchema.getValueSchema());
+        jsonGenerator.writeEndObject();
+    }
+}
