@@ -37,4 +37,23 @@ public class FieldSchemaSerializer extends StdSerializer<FieldSchema> {
      * Constructor of this object.
      */
     public FieldSchemaSerializer() {
-        this(null
+        this(null);
+    }
+
+    /**
+     * Constructor of this object.
+     *
+     * @param t Nominal type supported.
+     */
+    public FieldSchemaSerializer(final Class<FieldSchema> t) {
+        super(t);
+    }
+
+    @Override
+    public void serialize(final FieldSchema fieldSchema,
+                          final JsonGenerator jsonGenerator,
+                          final SerializerProvider serializerProvider) throws IOException {
+
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeNumberField("fieldIndex", fieldSchema.getFieldIndex());
+        jsonGenerator
