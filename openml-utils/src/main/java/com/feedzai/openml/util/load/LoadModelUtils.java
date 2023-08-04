@@ -97,3 +97,18 @@ public final class LoadModelUtils {
         }
 
         final File modelFile = files[0];
+        if (modelFile.isDirectory()) {
+            final String errorMsg = String.format("The path [%s] should be a file", modelFile.getAbsoluteFile());
+            logger.error(errorMsg);
+            throw new ModelLoadingException(errorMsg);
+        }
+
+        if (!modelFile.canRead()) {
+            final String errorMsg = String.format("Cannot open the model file for reading [%s]", modelFile.getAbsoluteFile());
+            logger.error(errorMsg);
+            throw new ModelLoadingException(errorMsg);
+        }
+
+        return modelFile.toPath();
+    }
+}
