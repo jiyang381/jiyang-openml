@@ -22,4 +22,26 @@ import com.feedzai.openml.mocks.MockDataset;
 import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
-import com.feedzai.openml.provider.model.MachineLearningModelLo
+import com.feedzai.openml.provider.model.MachineLearningModelLoader;
+import com.google.common.base.Preconditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+/**
+ * Class containing common utility methods to validate classification models.
+ *
+ * @since 0.1.0
+ * @author Nuno Diegues (nuno.diegues@feedzai.com)
+ */
+public final class ClassificationValidationUtils {
+
+    /**
+     * The logger for this class.
+     */
+    private static final Logger logger = LoggerFactory.getLogger(Classification
