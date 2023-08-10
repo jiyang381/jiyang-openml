@@ -59,4 +59,14 @@ public final class ClassificationValidationUtils {
      * @throws ModelLoadingException Exception thrown when the model has validation problems.
      */
     public static void validateClassificationModel(final DatasetSchema schema,
-                                                   final Classificati
+                                                   final ClassificationMLModel model) throws ModelLoadingException {
+        Preconditions.checkNotNull(schema, "schema cannot be null");
+        Preconditions.checkNotNull(model, "model cannot be null");
+
+        final MockDataset mockDataset = new MockDataset(schema, 1, new Random(0));
+        try {
+            model.classify(mockDataset.instance(0));
+        } catch (final RuntimeException e) {
+            final String msg = String.format("Model classification is not compatible with the given schema %s.", schema);
+
+            logger.error(msg, 
