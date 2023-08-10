@@ -44,4 +44,19 @@ public final class ClassificationValidationUtils {
     /**
      * The logger for this class.
      */
-    private static final Logger logger = LoggerFactory.getLogger(Classification
+    private static final Logger logger = LoggerFactory.getLogger(ClassificationValidationUtils.class);
+
+    /**
+     * Constructor for utility class.
+     */
+    private ClassificationValidationUtils() { }
+
+    /**
+     * Validates that a given classification model is capable of scoring according to the given schema.
+     *
+     * @param schema Schema of the loaded model.
+     * @param model  Loaded model.
+     * @throws ModelLoadingException Exception thrown when the model has validation problems.
+     */
+    public static void validateClassificationModel(final DatasetSchema schema,
+                                                   final Classificati
