@@ -86,4 +86,13 @@ public final class ClassificationValidationUtils {
      * Validates that the model to load can be used with the given parameters.
      *
      * @param modelLoader An instance responsible for instantiating models.
-     * @p
+     * @param modelPath   Path of the model.
+     * @param schema      Schema of the model.
+     * @param params      Collection of parameters and the corresponding values.
+     * @throws ModelLoadingException If the path and/or schema are not valid.
+     * @since 0.3.0
+     */
+    public static void validateParamsModelToLoad(final MachineLearningModelLoader modelLoader,
+                                                 final Path modelPath,
+                                                 final DatasetSchema schema,
+                         
