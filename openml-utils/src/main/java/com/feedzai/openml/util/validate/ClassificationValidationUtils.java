@@ -69,4 +69,21 @@ public final class ClassificationValidationUtils {
         } catch (final RuntimeException e) {
             final String msg = String.format("Model classification is not compatible with the given schema %s.", schema);
 
-            logger.error(msg, 
+            logger.error(msg, e);
+            throw new ModelLoadingException(msg, e);
+        }
+        try {
+            model.getClassDistribution(mockDataset.instance(0));
+        } catch (final RuntimeException e) {
+            final String msg = "Model does not support class distribution.";
+
+            logger.error(msg, e);
+            throw new ModelLoadingException(msg, e);
+        }
+    }
+
+    /**
+     * Validates that the model to load can be used with the given parameters.
+     *
+     * @param modelLoader An instance responsible for instantiating models.
+     * @p
