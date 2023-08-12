@@ -95,4 +95,12 @@ public final class ClassificationValidationUtils {
     public static void validateParamsModelToLoad(final MachineLearningModelLoader modelLoader,
                                                  final Path modelPath,
                                                  final DatasetSchema schema,
-                         
+                                                 final Map<String, String> params) throws ModelLoadingException {
+        Preconditions.checkNotNull(modelLoader, "modelLoader cannot be null");
+        Preconditions.checkNotNull(modelPath, "modelPath cannot be null");
+        Preconditions.checkNotNull(schema, "schema cannot be null");
+        Preconditions.checkNotNull(params, "params cannot be null");
+
+        logger.debug("Validating the parameters of the model in path [{}]", modelPath);
+        final List<ParamValidationError> validationErrors = modelLoader.validateForLoad(
+         
