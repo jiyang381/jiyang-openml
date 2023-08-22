@@ -103,4 +103,16 @@ public final class ClassificationValidationUtils {
 
         logger.debug("Validating the parameters of the model in path [{}]", modelPath);
         final List<ParamValidationError> validationErrors = modelLoader.validateForLoad(
-         
+                modelPath,
+                schema,
+                params
+        );
+        if (!validationErrors.isEmpty()) {
+            final String errorMsg = validationErrors.stream()
+                    .map(ParamValidationError::getMessage)
+                    .collect(Collectors.joining(","));
+            throw new ModelLoadingException(errorMsg);
+        }
+        logger.debug("Parameters of the model in path [{}] successfully validated", modelPath);
+    }
+}
