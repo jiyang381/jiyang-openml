@@ -53,4 +53,21 @@ public class MockInstanceTest {
 
         values.forEach(idx -> {
             assertThat(instance.getValue(idx.intValue()))
-  
+                    .as("The instance value")
+                    .isEqualTo(idx);
+
+            assertThatThrownBy(() -> instance.getStringValue(idx.intValue()))
+                    .as("The instance string value")
+                    .isInstanceOf(ClassCastException.class);
+        });
+
+    }
+
+    /**
+     * Tests the construction through {@link MockInstance#MockInstance(List)}.
+     */
+    @Test
+    public void testList() {
+
+        final List<Serializable> values = ImmutableList.of("0", "1", "2");
+        final MockInstance instance =
