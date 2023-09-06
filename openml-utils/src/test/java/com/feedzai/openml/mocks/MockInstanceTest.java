@@ -32,4 +32,25 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Class that tests the behaviour 
+ * Class that tests the behaviour of an {@link MockInstance}.
+ *
+ * @author Pedro Rijo (pedro.rijo@feedzai.com)
+ * @since @since 0.2.3
+ */
+public class MockInstanceTest {
+
+    /**
+     * Tests the construction through {@link MockInstance#MockInstance(double[])}.
+     */
+    @Test
+    public void testDoubleArray() {
+
+        final double[] doubles = {0, 1, 2};
+
+        final MockInstance instance = new MockInstance(doubles);
+
+        final List<Double> values = Arrays.stream(doubles).boxed().collect(Collectors.toList());
+
+        values.forEach(idx -> {
+            assertThat(instance.getValue(idx.intValue()))
+  
