@@ -98,4 +98,9 @@ public class MockInstanceTest {
                 .doesNotThrowAnyException());
 
         assertThatThrownBy(() -> instance.getValue(numberFieldsSize))
-                .as("The instance value for an index bigger than ask
+                .as("The instance value for an index bigger than asked")
+                .isInstanceOf(IndexOutOfBoundsException.class);
+
+    }
+
+}
