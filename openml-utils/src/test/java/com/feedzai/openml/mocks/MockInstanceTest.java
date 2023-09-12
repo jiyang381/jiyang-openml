@@ -86,4 +86,16 @@ public class MockInstanceTest {
 
 
     /**
-     * Tests the construction through {@link MockInstance#MockInstan
+     * Tests the construction through {@link MockInstance#MockInstance(int, Random)}.
+     */
+    @Test
+    public void testSize() {
+        final int numberFieldsSize = 10;
+        final MockInstance instance = new MockInstance(numberFieldsSize, new Random());
+
+        IntStream.range(0, numberFieldsSize).forEach(idx -> assertThatCode(() -> instance.getValue(idx))
+                .as("The instance value for valid index")
+                .doesNotThrowAnyException());
+
+        assertThatThrownBy(() -> instance.getValue(numberFieldsSize))
+                .as("The instance value for an index bigger than ask
