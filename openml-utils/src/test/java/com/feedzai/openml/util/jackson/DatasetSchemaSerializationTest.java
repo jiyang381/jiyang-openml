@@ -16,3 +16,21 @@
  */
 
 package com.feedzai.openml.util.jackson;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.feedzai.openml.data.schema.DatasetSchema;
+import com.feedzai.openml.util.data.schema.TestDatasetSchemaBuilder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Tests for the serialization of 
