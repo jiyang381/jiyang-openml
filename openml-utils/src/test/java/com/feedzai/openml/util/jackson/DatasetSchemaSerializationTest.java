@@ -33,4 +33,24 @@ import java.util.Collection;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests for the serialization of 
+ * Tests for the serialization of {@link DatasetSchema}.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+@RunWith(Parameterized.class)
+public class DatasetSchemaSerializationTest {
+
+    @Parameter
+    public DatasetSchema schema;
+
+    @Parameters
+    public static Collection<Object[]> data() {
+        final DatasetSchema schema = TestDatasetSchemaBuilder.builder()
+                .withCategoricalFields(2)
+                .withNumericalFields(3)
+                .withStringFields(1)
+                .build();
+
+        return Arrays.asList(new Object[][] {
+ 
