@@ -69,4 +69,9 @@ public class DatasetSchemaSerializationTest {
 
         final String datasetSchemaJSON = mapper.writeValueAsString(this.schema);
 
-        final DatasetSc
+        final DatasetSchema deserializableJSONContextModel = mapper.readValue(datasetSchemaJSON, DatasetSchema.class);
+
+        assertEquals(this.schema, deserializableJSONContextModel);
+    }
+
+}
