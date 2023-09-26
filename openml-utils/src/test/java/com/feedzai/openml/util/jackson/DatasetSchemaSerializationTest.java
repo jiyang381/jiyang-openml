@@ -53,4 +53,20 @@ public class DatasetSchemaSerializationTest {
                 .build();
 
         return Arrays.asList(new Object[][] {
- 
+                {schema}, {new DatasetSchema(schema.getFieldSchemas())}
+        });
+    }
+
+    /**
+     * Checks that is possible to serialize an instance of {@link DatasetSchema} in a JSON.
+     *
+     * @throws IOException If any unexpected error occurs.
+     */
+    @Test
+    public void testJSONSerialization() throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new SerializersInModule());
+
+        final String datasetSchemaJSON = mapper.writeValueAsString(this.schema);
+
+        final DatasetSc
