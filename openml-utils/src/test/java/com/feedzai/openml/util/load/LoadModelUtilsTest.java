@@ -44,4 +44,19 @@ public class LoadModelUtilsTest {
         final String directoryPath = getClass().getResource("/random_forest").getPath();
         final Path modelFilePath = LoadModelUtils.getModelFilePath(Paths.get(directoryPath));
 
-        
+        assertThat(modelFilePath)
+                .as("path of the binary of the model")
+                .isEqualTo(Paths.get(directoryPath + "/model/dummy_model"));
+
+    }
+
+    /**
+     * Tests that when there is an error with the file of the model, it will throw an exception.
+     */
+    @Test
+    public void notExistTest() {
+        Assertions.assertThatThrownBy(() -> LoadModelUtils.getModelFilePath(Paths.get("not_exist")))
+                .isInstanceOf(ModelLoadingException.class)
+                .hasMessageContaining("should be a directory");
+    }
+}
