@@ -27,4 +27,21 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for th
+ * Tests for the {@link LoadModelUtils}.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class LoadModelUtilsTest {
+
+    /**
+     * Tests that is possible to get the path of binary of the model.
+     *
+     * @throws ModelLoadingException If any error was found.
+     */
+    @Test
+    public void modelPathTest() throws ModelLoadingException {
+        final String directoryPath = getClass().getResource("/random_forest").getPath();
+        final Path modelFilePath = LoadModelUtils.getModelFilePath(Paths.get(directoryPath));
+
+        
