@@ -22,3 +22,82 @@ import com.feedzai.openml.data.schema.AbstractValueSchema;
 import com.feedzai.openml.data.schema.CategoricalValueSchema;
 import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.data.schema.NumericValueSchema;
+import com.feedzai.openml.data.schema.StringValueSchema;
+import com.feedzai.openml.provider.exception.ModelLoadingException;
+import com.google.common.collect.ImmutableSet;
+import org.junit.Test;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThatThrownBy;
+
+/**
+ * Tests for the {@link LoadSchemaUtils}.
+ *
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public class LoadSchemaUtilsTest {
+
+    /**
+     * Tests that is possible to get the {@link DatasetSchema} from a json file.
+     *
+     * @throws ModelLoadingException In case of error loading the schema.
+     */
+    @Test
+    public void schemaFromJsonTest() throws ModelLoadingException {
+        final String directoryPath = getClass().getResource(File.separator + "random_forest").getPath();
+        final DatasetSchema datasetSchema = LoadSchemaUtils.datasetSchemaFromJson(Paths.get(directoryPath));
+
+        assertThat(datasetSchema.getFieldSchemas())
+                .as("number of fields of the schema")
+                .hasSize(4);
+    }
+
+    /**
+     * Tests that when there is an error with the json file it will return an empty optional.
+     */
+    @Test
+    public void dirNotExistTest() {
+        assertThatThrownBy(() -> LoadSchemaUtils.datasetSchemaFromJson(Paths.get("dummy")))
+                .as("the dataset schema doesn't exist")
+                .hasMessageContaining("The path")
+                .hasMessageContaining("should be a directory");
+    }
+
+    /**
+     * Tests the behaviour of {@link LoadSchemaUtils#datasetSchemaFromJson(Path)} when the folder doesn't contain
+     * the model.json file.
+     */
+    @Test
+    public void jsonNotExistTest() {
+        final String directoryPath = getClass().getResource(File.separator + "wrong_model_000").getPath();
+
+        assertThatThrownBy(() -> LoadSchemaUtils.datasetSchemaFromJson(Paths.get(directoryPath)))
+                .as("The exception thrown by loading the schema from a path without the model.json file")
+                .isInstanceOf(ModelLoadingException.class)
+                .hasMessageContaining("model.json ");
+    }
+
+    /**
+     * Tests {@link LoadSchemaUtils#getValueSchemaTypeToString(AbstractValueSchema)}.
+     */
+    @Test
+    public void valueSchemaToString() {
+
+        assertThat(LoadSchemaUtils.getValueSchemaTypeToString(new StringValueSchema(true)))
+                .as("The string representation of a StringValueSchema")
+                .isEqualTo(LoadSchemaUtils.STRING);
+
+        assertThat(LoadSchemaUtils.getValueSchemaTypeToString(new CategoricalValueSchema(true, ImmutableSet.of())))
+                .as("The string representation of a CategoricalValueSchema")
+                .isEqualTo(LoadSchemaUtils.CATEGORICAL);
+
+        assertThat(LoadSchemaUtils.getValueSchemaTypeToString(new NumericValueSchema(true)))
+                .as("The string representation of a NumericValueSchema")
+                .isEqualTo(LoadSchemaUtils.NUMERIC);
+    }
+}
