@@ -23,4 +23,22 @@ import com.feedzai.openml.provider.MachineLearningProvider;
 import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.provider.model.MachineLearningModelLoader;
-import com.feedzai.open
+import com.feedzai.openml.util.algorithm.MLAlgorithmEnum;
+import com.google.common.io.Files;
+import org.junit.Test;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+/**
+ * Contains tests for model loading with a Provider.
+ *
+ * @param <M> The type of a class that extends {@link ClassificationMLModel}.
+ * @param <L> The 
