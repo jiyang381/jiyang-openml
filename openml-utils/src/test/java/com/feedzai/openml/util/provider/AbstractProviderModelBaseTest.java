@@ -401,3 +401,65 @@ public abstract class AbstractProviderModelBaseTest<M extends ClassificationMLMo
      * Gets a set with the possible values for an {@link Instance} when classified by {@link #getFirstModel}.
      *
      * @return a set with the index of the class nominal value.
+     */
+    public abstract Set<Integer> getClassifyValuesOfFirstModel();
+
+    /**
+     * Gets a set with the possible values for an {@link Instance} when classified by {@link #getSecondModel()}.
+     *
+     * @return a set with the index of the class nominal value.
+     */
+    public abstract Set<Integer> getClassifyValuesOfSecondModel();
+
+    /**
+     * Gets the {@link MachineLearningModelLoader} used by {@link #getFirstModel}.
+     *
+     * @return the {@link MachineLearningModelLoader} used by {@link #getFirstModel}.
+     */
+    public abstract L getFirstMachineLearningModelLoader();
+
+    /**
+     * Gets an instance of {@link MachineLearningProvider}.
+     *
+     * @return the {@link MachineLearningProvider}.
+     */
+    public abstract P getMachineLearningProvider();
+
+    /**
+     * Gets a dummy {@link Instance} to be classified by a {@link ClassificationMLModel}.
+     *
+     * @return a dummy {@link Instance}.
+     */
+    public abstract Instance getDummyInstance();
+
+    /**
+     * Gets a dummy {@link Instance} to be classified by a {@link ClassificationMLModel} that returns different results
+     * from the results produced by {@link #getDummyInstance()};
+     *
+     * @return a dummy {@link Instance}.
+     * @since 0.2.0
+     */
+    public abstract Instance getDummyInstanceDifferentResult();
+
+    /**
+     * Create the an instance of the {@link DatasetSchema} used in tests.
+     *
+     * @param targetValues The nominal values of the target field.
+     * @return an instance of {@link DatasetSchema}.
+     */
+    public abstract DatasetSchema createDatasetSchema(final Set<String> targetValues);
+
+    /**
+     * Gets a string with a name of an algorithm.
+     *
+     * @return a name of an algorithm.
+     */
+    public abstract MLAlgorithmEnum getValidAlgorithm();
+
+    /**
+     * Gets a set with the values of the target variable of {@link #getFirstModel}.
+     *
+     * @return the values of the target variable.
+     */
+    public abstract Set<String> getFirstModelTargetNominalValues();
+}
