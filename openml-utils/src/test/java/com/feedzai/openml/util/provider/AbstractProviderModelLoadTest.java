@@ -41,4 +41,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Contains tests for model loading with a Provider.
  *
  * @param <M> The type of a class that extends {@link ClassificationMLModel}.
- * @param <L> The 
+ * @param <L> The type of a class that extends {@link MachineLearningModelLoader}.
+ * @param <P> The type of a class that extends {@link MachineLearningProvider}.
+ *
+ * @author Luis Reis (luis.reis@feedzai.com)
+ * @author Paulo Pereira (paulo.pereira@feedzai.com)
+ * @since 0.1.0
+ */
+public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLModel,
+                                                    L extends MachineLearningModelLoader<M>,
+                                                    P extends MachineLearningProvider<L>>
+        extends Abstrac
