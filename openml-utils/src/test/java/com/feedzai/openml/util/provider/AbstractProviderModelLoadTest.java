@@ -51,4 +51,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLModel,
                                                     L extends MachineLearningModelLoader<M>,
                                                     P extends MachineLearningProvider<L>>
-        extends Abstrac
+        extends AbstractProviderModelBaseTest<M, L, P> {
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                       TESTS                       *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    /**
+     * Checks that is possible to load a schema from a valid path.
+     *
+     * @throws ModelLoadingException If there is an error loading the schema.
+     */
+    @Test
+    public void loadSchemaValidTest() throws ModelLoadingException {
+        final L machineLearningModelLoader = getMachineLearningModelLoade
