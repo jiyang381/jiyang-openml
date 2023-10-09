@@ -64,4 +64,18 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
      */
     @Test
     public void loadSchemaValidTest() throws ModelLoadingException {
-        final L machineLearningModelLoader = getMachineLearningModelLoade
+        final L machineLearningModelLoader = getMachineLearningModelLoader(getValidAlgorithm());
+
+        final String modelPath = getClass().getResource(File.separator + getValidModelDirName()).getPath();
+        final DatasetSchema datasetSchema = machineLearningModelLoader.loadSchema(Paths.get(modelPath));
+
+        assertThat(datasetSchema)
+                .as("the expected datasetSchema")
+                .isEqualTo(createDatasetSchema(getFirstModelTargetNominalValues()));
+    }
+
+    /**
+     * Checks that the load of a schema from a invalid path results in a empty object.
+     */
+    @Test
+    public void loadSchemaInval
