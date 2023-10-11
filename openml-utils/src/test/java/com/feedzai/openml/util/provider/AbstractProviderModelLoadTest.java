@@ -78,4 +78,17 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
      * Checks that the load of a schema from a invalid path results in a empty object.
      */
     @Test
-    public void loadSchemaInval
+    public void loadSchemaInvalidTest() {
+        final L machineLearningModelLoader = getMachineLearningModelLoader(getValidAlgorithm());
+
+        final File myTempDir = Files.createTempDir();
+        myTempDir.deleteOnExit();
+
+        assertThatThrownBy(() -> machineLearningModelLoader.loadSchema(myTempDir.toPath()))
+                .as("Loading Schema Exception")
+                .hasMessageContaining("There is no model.json")
+                .hasMessageContaining("model path");
+    }
+
+    /**
+     * Checks that a validations of a valid schema doesn't has er
