@@ -134,4 +134,20 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
     }
 
     /**
-     * G
+     * Gets a {@link Path} to the directory of a valid model.
+     *
+     * @return The Path.
+     */
+    Path getPathToModelDir() {
+        return Paths.get(getClass().getResource("/" + getValidModelDirName()).getPath());
+    }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                  ABSTRACT METHODS                 *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    /**
+     * Gets a string with a name of the directory that contains a model.
+     *
+     * @return a name of the directory 
