@@ -109,4 +109,15 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
     }
 
 
-    /* * * * 
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                        UTIL                       *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    /**
+     * Loads a {@link ClassificationMLModel} for the provided algorithm and filename.
+     *
+     * @param algorithm    Algorithm of the loaded model.
+     * @param dirName      Name of the directory of the model.
+     * @param targetValues The nominal values of the target field.
+     * @return the loaded {@link ClassificationMLModel}.
+     * @throws Mode
