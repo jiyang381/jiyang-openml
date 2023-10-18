@@ -91,4 +91,22 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
     }
 
     /**
-     * Checks that a validations of a valid schema doesn't has er
+     * Checks that a validations of a valid schema doesn't has errors.
+     */
+    @Test
+    public void validModelValidateTest() {
+        final L machineLearningModelLoader = getMachineLearningModelLoader(getValidAlgorithm());
+
+        final List<ParamValidationError> errors = machineLearningModelLoader.validateForLoad(
+                getPathToModelDir(),
+                createDatasetSchema(getFirstModelTargetNominalValues()),
+                Collections.emptyMap()
+        );
+
+        assertThat(errors)
+                .as("there are not errors")
+                .isEmpty();
+    }
+
+
+    /* * * * 
