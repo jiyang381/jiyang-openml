@@ -120,4 +120,18 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
      * @param dirName      Name of the directory of the model.
      * @param targetValues The nominal values of the target field.
      * @return the loaded {@link ClassificationMLModel}.
-     * @throws Mode
+     * @throws ModelLoadingException If anything goes wrong.
+     */
+    protected M loadModel(final MLAlgorithmEnum algorithm,
+                          final String dirName,
+                          final Set<String> targetValues) throws ModelLoadingException {
+        final L modelLoader = getMachineLearningModelLoader(algorithm);
+        final String modelPath = getClass().getResource("/" + dirName).getPath();
+        return modelLoader.loadModel(
+                Paths.get(modelPath),
+                createDatasetSchema(targetValues)
+        );
+    }
+
+    /**
+     * G
