@@ -150,4 +150,7 @@ public abstract class AbstractProviderModelLoadTest<M extends ClassificationMLMo
     /**
      * Gets a string with a name of the directory that contains a model.
      *
-     * @return a name of the directory 
+     * @return a name of the directory with the model.
+     */
+    public abstract String getValidModelDirName();
+}
