@@ -24,3 +24,18 @@ import com.feedzai.openml.provider.model.MachineLearningModelTrainer;
 import com.feedzai.openml.util.algorithm.MLAlgorithmEnum;
 import org.junit.Test;
 
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * Contains tests for model training with a Provider.
+ *
+ * @param <M> The type of a class that extends {@link ClassificationMLModel}.
+ * @param <L> The type of a class that extends {@link MachineLearningModelTrainer}.
+ * @param <P> The type of a class that extends {@link MachineLearningProvider}.
+ *
+ * @author Luis Reis (luis.reis@feedzai.com)
+ * @since 0.1.0
+ */
+public abstract class AbstractProviderModelTrainTest<M extends ClassificationMLModel,
+                                     
