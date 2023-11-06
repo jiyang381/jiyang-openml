@@ -38,4 +38,15 @@ import java.util.Random;
  * @since 0.1.0
  */
 public abstract class AbstractProviderModelTrainTest<M extends ClassificationMLModel,
-                                     
+                                                     L extends MachineLearningModelTrainer<M>,
+                                                     P extends MachineLearningProvider<L>>
+        extends AbstractProviderModelBaseTest<M, L, P> {
+
+    /**
+     * Tries to train the Train Dataset ({@link #getTrainDataset()}) with each trainable algorithm
+     * of the provider ({@link #getTrainAlgorithms()}).
+     *
+     * @throws ModelTrainingException If there is an error with the training.
+     */
+    @Test
+    public void trainModelsForAllAlgorithms() throws ModelTrainingEx
