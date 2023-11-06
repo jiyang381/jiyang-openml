@@ -147,3 +147,217 @@ public class ClassificationValidationUtilsTest {
 
     /**
      * Tests that a model to load is successfully validated when the parameters are valid.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testValidParamsModelToLoad() {
+        assertThatCode(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        getMachineLearningModelLoader(),
+                        VALID_PATH,
+                        SCHEMA,
+                        VALID_PARAM_MAP
+                ))
+                .doesNotThrowAnyException();
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the parameters of a model to load are not valid.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testInvalidParamsModelToLoad() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        getMachineLearningModelLoader(),
+                        VALID_PATH,
+                        SCHEMA,
+                        INVALID_PARAM_MAP
+                ))
+                .isInstanceOf(ModelLoadingException.class)
+                .hasMessage(INVALID_MODEL_TO_LOAD_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the {@link DatasetSchema} of a classification model
+     * used to score events is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidSchemaOfClassificationModel() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateClassificationModel(
+                        null,
+                        getClassificationModelFor(
+                                () -> new double[] { 0.25, 0.75 },
+                                () -> 1
+                        )
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the {@link ClassificationMLModel} used to score events
+     * is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidClassificationMLModel() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateClassificationModel(
+                        SCHEMA,
+                        null
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the {@link MachineLearningModelLoader} of a model to
+     * load is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidModelLoaderOfModelToLoad() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        null,
+                        VALID_PATH,
+                        SCHEMA,
+                        VALID_PARAM_MAP
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the {@link Path} of a model to load is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidPathOfModelToLoad() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        getMachineLearningModelLoader(),
+                        null,
+                        SCHEMA,
+                        VALID_PARAM_MAP
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the {@link DatasetSchema} of a model to load is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidSchemaOfModelToLoad() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        getMachineLearningModelLoader(),
+                        VALID_PATH,
+                        null,
+                        VALID_PARAM_MAP
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Tests that a {@link ModelLoadingException} is thrown when the map of parameters of a model to load is null.
+     *
+     * @since 0.3.0
+     */
+    @Test
+    public void testVoidParamOfModelToLoad() {
+        assertThatThrownBy(
+                () -> ClassificationValidationUtils.validateParamsModelToLoad(
+                        getMachineLearningModelLoader(),
+                        VALID_PATH,
+                        SCHEMA,
+                        null
+                ))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining(NULL_ERROR_MSG);
+    }
+
+    /**
+     * Creates a classification model that always yields the given distribution of classes and predicted class.
+     *
+     * @param distributionSupplier The supplier for the distribution of classes.
+     * @param classSupplier        The supplier for the class to predict.
+     * @return The classification model.
+     */
+    private ClassificationMLModel getClassificationModelFor(final Supplier<double[]> distributionSupplier,
+                                                            final Supplier<Integer> classSupplier) {
+
+        return new ClassificationMLModel() {
+            @Override
+            public double[] getClassDistribution(final Instance instance) {
+                return distributionSupplier.get();
+            }
+
+            @Override
+            public int classify(final Instance instance) {
+                return classSupplier.get();
+            }
+
+            @Override
+            public boolean save(final Path dir, final String name) {
+                throw new UnsupportedOperationException("Not supposed to be called.");
+            }
+
+            @Override
+            public DatasetSchema getSchema() {
+                throw new UnsupportedOperationException("Not supposed to be called.");
+            }
+
+            @Override
+            public void close() throws Exception {
+                // Empty on purpose.
+            }
+        };
+    }
+
+    /**
+     * Creates a model loader used to validate the parameters of a model to load. The validation will fail if the map
+     * of parameters is empty.
+     *
+     * @since 0.3.0
+     */
+    private MachineLearningModelLoader getMachineLearningModelLoader() {
+
+        return new MachineLearningModelLoader() {
+            @Override
+            public MachineLearningModel loadModel(final Path modelPath,
+                                                  final DatasetSchema schema) {
+                return null;
+            }
+
+            @Override
+            public DatasetSchema loadSchema(final Path modelPath) {
+                return null;
+            }
+
+            @Override
+            public List<ParamValidationError> validateForLoad(final Path modelPath,
+                                                              final DatasetSchema schema,
+                                                              final Map params) {
+                if (params.isEmpty()) {
+                    return ImmutableList.of(new ParamValidationError(INVALID_MODEL_TO_LOAD_MSG));
+                }
+                return ImmutableList.of();
+            }
+        };
+    }
+
+}
