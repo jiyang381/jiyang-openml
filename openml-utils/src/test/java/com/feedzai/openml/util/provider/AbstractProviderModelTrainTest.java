@@ -66,4 +66,14 @@ public abstract class AbstractProviderModelTrainTest<M extends ClassificationMLM
     /**
      * Dataset used to train models in tests for this provider.
      *
+     * @return A Dataset to be used in test training.
+     */
+    protected abstract Dataset getTrainDataset();
+
+    /**
+     * List of Algorithms that support training in this provider.
      *
+     * @return The list of trainable algorithms in this provider.
+     */
+    protected abstract Map<MLAlgorithmEnum, Map<String, String>> getTrainAlgorithms();
+}
