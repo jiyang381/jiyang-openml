@@ -49,4 +49,21 @@ public abstract class AbstractProviderModelTrainTest<M extends ClassificationMLM
      * @throws ModelTrainingException If there is an error with the training.
      */
     @Test
-    public void trainModelsForAllAlgorithms() throws ModelTrainingEx
+    public void trainModelsForAllAlgorithms() throws ModelTrainingException {
+
+        for (final Map.Entry<MLAlgorithmEnum, Map<String, String>> algorithm : getTrainAlgorithms().entrySet()) {
+
+            final Dataset dataset = getTrainDataset();
+            final L modelTrainer = getMachineLearningModelLoader(algorithm.getKey());
+
+            final M model = modelTrainer.fit(dataset, new Random(0), algorithm.getValue());
+
+            model.classify(getDummyInstance());
+            model.getClassDistribution(getDummyInstance());
+        }
+    }
+
+    /**
+     * Dataset used to train models in tests for this provider.
+     *
+     *
