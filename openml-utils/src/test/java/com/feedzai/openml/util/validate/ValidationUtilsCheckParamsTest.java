@@ -20,4 +20,19 @@ package com.feedzai.openml.util.validate;
 import com.feedzai.openml.provider.descriptor.MLAlgorithmDescriptor;
 import com.feedzai.openml.provider.descriptor.MachineLearningAlgorithmType;
 import com.feedzai.openml.provider.descriptor.ModelParameter;
-import 
+import com.feedzai.openml.provider.descriptor.fieldtype.ModelParameterType;
+import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
+import com.google.common.collect.ImmutableMap;
+import org.junit.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.assertTha
