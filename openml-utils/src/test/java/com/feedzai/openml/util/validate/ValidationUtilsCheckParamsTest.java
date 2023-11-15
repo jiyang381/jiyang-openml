@@ -35,4 +35,20 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.assertTha
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Unit tests for the {@link ValidationUtils} methods that validate model parameters.
+ *
+ * @author Henrique Costa (henrique.costa@feedzai.com)
+ * @since 0.1.0
+ */
+public class ValidationUtilsCheckParamsTest {
+
+    /**
+     * {@link ModelParameterType} implementation that always considers the values valid.
+     */
+    private static final ModelParameterType ALWAYS_VALID_PARAMETER_TYPE = (name, value) -> Optional.empty();
+
+    /**
+     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)
