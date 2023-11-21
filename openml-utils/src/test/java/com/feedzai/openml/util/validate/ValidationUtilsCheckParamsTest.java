@@ -51,4 +51,14 @@ public class ValidationUtilsCheckParamsTest {
     private static final ModelParameterType ALWAYS_VALID_PARAMETER_TYPE = (name, value) -> Optional.empty();
 
     /**
-     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)
+     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)} returns an error when a mandatory
+     * parameter is missing.
+     */
+    @Test
+    public void testCheckParamsWithMissingMandatory() {
+        final MLAlgorithmDescriptor descriptor = getMlAlgorithmDescriptor(2, 1, ALWAYS_VALID_PARAMETER_TYPE);
+        final Map<Boolean, List<ModelParameter>> paramDescriptors = parametersByMandatory(descriptor);
+        final ModelParameter optionalParam = paramDescriptors.get(false).get(0);
+        final ModelParameter mandatoryParam = paramDescriptors.get(true).get(0);
+
+        validateSingleErr
