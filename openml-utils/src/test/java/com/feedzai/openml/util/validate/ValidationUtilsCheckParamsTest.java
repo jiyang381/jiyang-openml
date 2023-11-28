@@ -88,4 +88,20 @@ public class ValidationUtilsCheckParamsTest {
     }
 
     /**
-     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)} returns OK when all para
+     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)} returns OK when all parameter
+     * constraints are satisfied.
+     */
+    @Test
+    public void testCheckParamsOK() {
+        final MLAlgorithmDescriptor descriptor = getMlAlgorithmDescriptor(
+                5,
+                3,
+                ALWAYS_VALID_PARAMETER_TYPE
+        );
+
+        final Map<String, String> params = descriptor.getParameters()
+                .stream()
+                .map(ModelParameter::getName)
+                .collect(Collectors.toMap(Function.identity(), key -> "anyvalue"));
+
+        assertThat(ValidationUtils.checkParams(descr
