@@ -61,4 +61,20 @@ public class ValidationUtilsCheckParamsTest {
         final ModelParameter optionalParam = paramDescriptors.get(false).get(0);
         final ModelParameter mandatoryParam = paramDescriptors.get(true).get(0);
 
-        validateSingleErr
+        validateSingleErrorWithDescription(
+                descriptor,
+                ImmutableMap.of(optionalParam.getName(), "somevalue"),
+                mandatoryParam.getName()
+        );
+    }
+
+    /**
+     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)} propagates the error returned by a
+     * failing parameter validation.
+     */
+    @Test
+    public void testCheckParamsFailingValidations() {
+        final String ERROR_MESSAGE = "ERROR";
+        final MLAlgorithmDescriptor descriptor = getMlAlgorithmDescriptor(
+                1,
+  
