@@ -77,4 +77,15 @@ public class ValidationUtilsCheckParamsTest {
         final String ERROR_MESSAGE = "ERROR";
         final MLAlgorithmDescriptor descriptor = getMlAlgorithmDescriptor(
                 1,
-  
+                1,
+                (name, value) -> Optional.of(new ParamValidationError(ERROR_MESSAGE))
+        );
+
+        final Map<Boolean, List<ModelParameter>> paramDescriptors = parametersByMandatory(descriptor);
+        final ModelParameter param = paramDescriptors.get(true).get(0);
+
+        validateSingleErrorWithDescription(descriptor, ImmutableMap.of(param.getName(), "somevalue"), ERROR_MESSAGE);
+    }
+
+    /**
+     * Ensures that {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map)} returns OK when all para
