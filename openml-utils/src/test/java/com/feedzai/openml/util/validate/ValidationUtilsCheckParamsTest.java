@@ -115,4 +115,13 @@ public class ValidationUtilsCheckParamsTest {
      * @param parameters          The total number of parameters the descriptor should have.
      * @param mandatoryParameters The number of parameters that should be mandatory.
      * @param parameterType The {@link ModelParameterType} that all the parameter descriptors will have.
-     * @return The resulting 
+     * @return The resulting {@link MLAlgorithmDescriptor}.
+     */
+    private MLAlgorithmDescriptor getMlAlgorithmDescriptor(final int parameters,
+                                                           final int mandatoryParameters,
+                                                           final ModelParameterType parameterType) {
+        final Set<ModelParameter> modelParameters = IntStream.range(0, parameters)
+                .mapToObj(paramIndex -> new ModelParameter(
+                        "param" + paramIndex,
+                        "desc" + paramIndex,
+          
