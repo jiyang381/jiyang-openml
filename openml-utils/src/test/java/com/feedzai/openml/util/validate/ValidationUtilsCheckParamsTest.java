@@ -104,4 +104,15 @@ public class ValidationUtilsCheckParamsTest {
                 .map(ModelParameter::getName)
                 .collect(Collectors.toMap(Function.identity(), key -> "anyvalue"));
 
-        assertThat(ValidationUtils.checkParams(descr
+        assertThat(ValidationUtils.checkParams(descriptor, params))
+                .as("Calling checkParams with")
+                .isEmpty();
+    }
+
+    /**
+     * Creates an {@link MLAlgorithmDescriptor} with the requested characteristics.
+     *
+     * @param parameters          The total number of parameters the descriptor should have.
+     * @param mandatoryParameters The number of parameters that should be mandatory.
+     * @param parameterType The {@link ModelParameterType} that all the parameter descriptors will have.
+     * @return The resulting 
