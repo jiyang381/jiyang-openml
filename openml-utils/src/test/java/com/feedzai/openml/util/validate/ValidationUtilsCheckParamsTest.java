@@ -124,4 +124,17 @@ public class ValidationUtilsCheckParamsTest {
                 .mapToObj(paramIndex -> new ModelParameter(
                         "param" + paramIndex,
                         "desc" + paramIndex,
-          
+                        "helper" + paramIndex,
+                        paramIndex < mandatoryParameters, // isMandatory
+                        parameterType
+                ))
+                .collect(Collectors.toSet());
+
+        try {
+            return new MLAlgorithmDescriptor(
+                    "thename",
+                    modelParameters,
+                    MachineLearningAlgorithmType.SUPERVISED_BINARY_CLASSIFICATION,
+                    new URL("http://www.feedzai.com")
+            );
+        } catch (final MalformedURLException e) 
