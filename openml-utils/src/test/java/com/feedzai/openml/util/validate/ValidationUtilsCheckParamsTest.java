@@ -137,4 +137,15 @@ public class ValidationUtilsCheckParamsTest {
                     MachineLearningAlgorithmType.SUPERVISED_BINARY_CLASSIFICATION,
                     new URL("http://www.feedzai.com")
             );
-        } catch (final MalformedURLException e) 
+        } catch (final MalformedURLException e) {
+            throw new RuntimeException("Could not generate test algorithm descriptor.");
+        }
+    }
+
+    /**
+     * {@link ValidationUtils#checkParams(MLAlgorithmDescriptor, Map) Validates} the given parameters and asserts
+     * that the result is a failure containing the given message.
+     *
+     * @param descriptor      The {@link MLAlgorithmDescriptor} for which the parameters are being validated.
+     * @param params          The Map of parameters (name value) to validate.
+     * @param expectedMessage The message that the error resulting from the validation should 
