@@ -148,4 +148,17 @@ public class ValidationUtilsCheckParamsTest {
      *
      * @param descriptor      The {@link MLAlgorithmDescriptor} for which the parameters are being validated.
      * @param params          The Map of parameters (name value) to validate.
-     * @param expectedMessage The message that the error resulting from the validation should 
+     * @param expectedMessage The message that the error resulting from the validation should contain.
+     */
+    private void validateSingleErrorWithDescription(final MLAlgorithmDescriptor descriptor,
+                                                    final Map<String, String> params,
+                                                    final String expectedMessage) {
+
+        final List<ParamValidationError> errors = ValidationUtils.checkParams(
+                descriptor,
+                params
+        );
+        assertThat(errors)
+                .as("The validation result")
+                .hasSize(1)
+                .allSa
