@@ -161,4 +161,16 @@ public class ValidationUtilsCheckParamsTest {
         assertThat(errors)
                 .as("The validation result")
                 .hasSize(1)
-                .allSa
+                .allSatisfy(
+                        error -> assertThat(error.getMessage())
+                                .as("The error's description")
+                                .contains(expectedMessage)
+                );
+    }
+
+    /**
+     * Partitions the {@link MLAlgorithmDescriptor}'s parameters into a Map keyed by whether they are mandatory or not.
+     *
+     * @param descriptor  {@link MLAlgorithmDescriptor} whose parameters should be grouped by
+     * {@link ModelParameter#isMandatory() whether they are mandatory}.
+     * @return A map with two entries,
