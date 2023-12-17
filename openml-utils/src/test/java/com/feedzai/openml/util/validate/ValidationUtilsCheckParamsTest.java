@@ -173,4 +173,12 @@ public class ValidationUtilsCheckParamsTest {
      *
      * @param descriptor  {@link MLAlgorithmDescriptor} whose parameters should be grouped by
      * {@link ModelParameter#isMandatory() whether they are mandatory}.
-     * @return A map with two entries,
+     * @return A map with two entries, one keyed with {@code true} containing a List of all mandatory parameters and
+     * another keyed with {@code false} containing a List of the optional ones.
+     */
+    private Map<Boolean, List<ModelParameter>> parametersByMandatory(final MLAlgorithmDescriptor descriptor) {
+        return descriptor.getParameters()
+                .stream()
+                .collect(Collectors.groupingBy(ModelParameter::isMandatory));
+    }
+}
