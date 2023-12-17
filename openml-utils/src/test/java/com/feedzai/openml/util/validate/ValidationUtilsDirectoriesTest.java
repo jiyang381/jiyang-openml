@@ -37,4 +37,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ValidationUtilsDirectoriesTest {
 
     /**
-     * Tests that the {@link ValidationUtils#validateM
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method accepts the expected structure.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirOK() throws IOException {
+        final Path base = createTempBaseDir();
+        final Path modelDir = createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
+        createTempFile(modelDir);
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a valid directory structure")
+               
