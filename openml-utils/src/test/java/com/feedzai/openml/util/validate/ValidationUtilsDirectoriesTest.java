@@ -17,4 +17,24 @@
 
 package com.feedzai.openml.util.validate;
 
-import com.feedzai
+import com.feedzai.openml.util.load.LoadModelUtils;
+import com.google.common.collect.ImmutableSet;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Performs unit tests on the {@link ValidationUtils} methods related to path validations.
+ *
+ * @author Henrique Costa (henrique.costa@feedzai.com)
+ * @since 0.1.0
+ */
+public class ValidationUtilsDirectoriesTest {
+
+    /**
+     * Tests that the {@link ValidationUtils#validateM
