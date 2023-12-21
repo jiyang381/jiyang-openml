@@ -48,4 +48,17 @@ public class ValidationUtilsDirectoriesTest {
         createTempFile(modelDir);
         assertThat(ValidationUtils.validateModelInDir(base))
                 .as("Validation of a valid directory structure")
-               
+                .isEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a file instead of a directory.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirIsFile() throws IOException {
+        final Path basefile = createTempFile();
+        assertThat(ValidationUtils.validateModelInDir(basefile))
+                .as("Validation
