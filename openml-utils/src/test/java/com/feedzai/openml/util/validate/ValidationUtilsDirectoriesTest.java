@@ -61,4 +61,20 @@ public class ValidationUtilsDirectoriesTest {
     public void testValidateModelInDirIsFile() throws IOException {
         final Path basefile = createTempFile();
         assertThat(ValidationUtils.validateModelInDir(basefile))
-                .as("Validation
+                .as("Validation of a path that is a file")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument does not exist in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirDoesNotExist() {
+        assertThat(ValidationUtils.validateModelInDir(Paths.get("doesnotexist")))
+                .as("Validation of a directory structure that doesn't exist")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUt
