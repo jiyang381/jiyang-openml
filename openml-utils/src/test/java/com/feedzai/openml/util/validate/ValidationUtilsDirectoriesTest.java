@@ -77,4 +77,13 @@ public class ValidationUtilsDirectoriesTest {
     }
 
     /**
-     * Tests that the {@link ValidationUt
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a directory that does not contain a directory named {@link LoadModelUtils#MODEL_FOLDER}.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirMissingModelDir() throws IOException {
+        final Path base = createTempBaseDir();
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure whe
