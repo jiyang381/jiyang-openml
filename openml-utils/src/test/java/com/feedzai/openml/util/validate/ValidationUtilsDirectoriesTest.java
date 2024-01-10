@@ -100,4 +100,14 @@ public class ValidationUtilsDirectoriesTest {
     @Test
     public void testValidateModelInDirModelDirIsFile() throws IOException {
         final Path base = createTempBaseDir();
-    
+        Files.createFile(base.resolve(LoadModelUtils.MODEL_FOLDER));
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure where the model dir is a file")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a directory that cannot be executed by the current user.
+     *
+     * @throws IOException If the test resources could not be created in the filesyst
