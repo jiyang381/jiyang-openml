@@ -120,4 +120,17 @@ public class ValidationUtilsDirectoriesTest {
         Files.setPosixFilePermissions(base, ImmutableSet.of());
         assertThat(ValidationUtils.validateModelInDir(base))
                 .as("Validation of a directory structure where the user cannot open the base dir")
-                .isNotEm
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a structure where the inner {@link LoadModelUtils#MODEL_FOLDER model directory} cannot be
+     * accessed by the current user.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirNoPermissionsModelDir() throws IOException {
+        final Path base = createTempBaseDir();
+        final
