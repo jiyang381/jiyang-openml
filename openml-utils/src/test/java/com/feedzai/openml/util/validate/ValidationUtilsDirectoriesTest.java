@@ -153,4 +153,15 @@ public class ValidationUtilsDirectoriesTest {
         final Path base = createTempBaseDir();
         final Path modelDir = createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
         final Path modelfile = createTempFile(modelDir);
-        Files.setPosixFilePermissions(mo
+        Files.setPosixFilePermissions(modelfile, ImmutableSet.of());
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure where the user cannot read the file")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a structure where the inner {@link LoadModelUtils#MODEL_FOLDER model directory} contains
+     * more than one file.
+     *
+     * @throws IOException If the test resources could not be created in the filesy
