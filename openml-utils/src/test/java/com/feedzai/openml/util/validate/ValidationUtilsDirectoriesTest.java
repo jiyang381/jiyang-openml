@@ -133,4 +133,14 @@ public class ValidationUtilsDirectoriesTest {
     @Test
     public void testValidateModelInDirNoPermissionsModelDir() throws IOException {
         final Path base = createTempBaseDir();
-        final
+        final Path modelDir = createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
+        createTempFile(modelDir);
+        Files.setPosixFilePermissions(modelDir, ImmutableSet.of());
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure where the user cannot open the model dir")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a structure where the inner {@link LoadModel
