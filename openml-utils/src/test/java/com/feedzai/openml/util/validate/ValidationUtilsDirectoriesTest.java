@@ -164,4 +164,18 @@ public class ValidationUtilsDirectoriesTest {
      * argument points to a structure where the inner {@link LoadModelUtils#MODEL_FOLDER model directory} contains
      * more than one file.
      *
-     * @throws IOException If the test resources could not be created in the filesy
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDirModelDirectoryWithMultipleFiles() throws IOException {
+        final Path base = createTempBaseDir();
+        final Path modelDir = createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
+        createTempFile(modelDir);
+        createTempFile(modelDir);
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure where the model dir contains several files")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the 
