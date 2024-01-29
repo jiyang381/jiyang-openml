@@ -188,4 +188,16 @@ public class ValidationUtilsDirectoriesTest {
         final Path base = createTempBaseDir();
         createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
         assertThat(ValidationUtils.validateModelInDir(base))
-        
+                .as("Validation of a directory structure where the model dir is empty")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelInDir(Path)} method rejects a structure where the given
+     * argument points to a structure where the inner {@link LoadModelUtils#MODEL_FOLDER model directory} contains
+     * another directory instead of a file.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelInDir
