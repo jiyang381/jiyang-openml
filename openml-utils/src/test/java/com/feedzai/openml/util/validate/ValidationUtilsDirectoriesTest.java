@@ -200,4 +200,14 @@ public class ValidationUtilsDirectoriesTest {
      * @throws IOException If the test resources could not be created in the filesystem.
      */
     @Test
-    public void testValidateModelInDir
+    public void testValidateModelInDirNestedDirectoryInsteadOfFile() throws IOException {
+        final Path base = createTempBaseDir();
+        final Path modelDir = createDirectory(base.resolve(LoadModelUtils.MODEL_FOLDER));
+        createDirectory(modelDir.resolve("subDirShouldBeFile"));
+        assertThat(ValidationUtils.validateModelInDir(base))
+                .as("Validation of a directory structure where the model dir contains a directory")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link ValidationUtils#validateModelPathToTrain(Path)} method
