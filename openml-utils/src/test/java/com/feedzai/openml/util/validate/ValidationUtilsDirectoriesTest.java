@@ -224,4 +224,19 @@ public class ValidationUtilsDirectoriesTest {
     }
 
     /**
-     * Tests that the {@link ValidationUtils#validateModelPathToTrain(Path)} 
+     * Tests that the {@link ValidationUtils#validateModelPathToTrain(Path)} method rejects a {@link Path} that points
+     * to a non-empty directory.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelPathToTrainPathNotEmpty() throws IOException {
+        final Path base = createTempBaseDir();
+        createTempFile(base);
+        assertThat(ValidationUtils.validateModelPathToTrain(base))
+                .as("Validation of a path that is not empty")
+                .isNotEmpty();
+    }
+
+    /**
+     * Tests that the {@link Va
