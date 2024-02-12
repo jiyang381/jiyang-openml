@@ -239,4 +239,18 @@ public class ValidationUtilsDirectoriesTest {
     }
 
     /**
-     * Tests that the {@link Va
+     * Tests that the {@link ValidationUtils#validateModelPathToTrain(Path)} method rejects a {@link Path} that points
+     * to a file instead of a directory.
+     *
+     * @throws IOException If the test resources could not be created in the filesystem.
+     */
+    @Test
+    public void testValidateModelPathToTrainPathIsFile() throws IOException {
+        final Path base = createTempFile();
+        assertThat(ValidationUtils.validateModelPathToTrain(base))
+                .as("Validation of a path that is not a directory")
+                .isNotEmpty();
+    }
+
+    /**
+     * Creates a di
