@@ -253,4 +253,17 @@ public class ValidationUtilsDirectoriesTest {
     }
 
     /**
-     * Creates a di
+     * Creates a directory with a unique name in the system's temporary directory and marks it for deletion once the
+     * process ends.
+     *
+     * @return The {@link Path} to the created dir.
+     * @throws IOException If the resource could not be created.
+     */
+    private Path createTempBaseDir() throws IOException {
+        final Path base = Files.createTempDirectory("testmodel");
+        base.toFile().deleteOnExit();
+        return base;
+    }
+
+    /**
+     * Creates a directory with the given path and marks it for deletion once the process en
