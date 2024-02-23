@@ -266,4 +266,19 @@ public class ValidationUtilsDirectoriesTest {
     }
 
     /**
-     * Creates a directory with the given path and marks it for deletion once the process en
+     * Creates a directory with the given path and marks it for deletion once the process ends.
+     *
+     * @param newDir The {@link Path} of the new directory to create.
+     * @return The {@link Path} to the created dir.
+     * @throws IOException If the resource could not be created.
+     */
+    private Path createDirectory(final Path newDir) throws IOException {
+        final Path directory = Files.createDirectory(newDir);
+        directory.toFile().deleteOnExit();
+        return directory;
+    }
+
+    /**
+     * Creates a file with a unique name in the given directory and marks it for deletion once the process ends.
+     *
+     * @param direc
