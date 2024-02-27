@@ -295,4 +295,12 @@ public class ValidationUtilsDirectoriesTest {
      * Creates a file with a unique name in the system's temporary directory and marks it for deletion once the
      * process ends.
      *
-     * 
+     * @return The {@link Path} to the created file.
+     * @throws IOException If the resource could not be created.
+     */
+    private Path createTempFile() throws IOException {
+        final Path file = Files.createTempFile("somefile", "tmp");
+        file.toFile().deleteOnExit();
+        return file;
+    }
+}
