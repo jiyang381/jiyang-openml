@@ -41,4 +41,18 @@ public class ValidationUtilsTest {
      */
     @Test
     public void testBaseValidationOK() {
-  
+        final DatasetSchema schema = TestDatasetSchemaBuilder.builder()
+                .withCategoricalFields(3)
+                .withNumericalFields(3)
+                .withStringFields(3)
+                .build();
+
+        assertThat(ValidationUtils.baseLoadValidations(schema, ImmutableMap.of("param1", "val1")))
+                .as("The result of validating a valid schema and params map")
+                .isEmpty();
+    }
+
+    /**
+     * Tests that {@link ValidationUtils#baseLoadValidations(DatasetSchema, Map)} can return some errors.
+     */
+    @Test
