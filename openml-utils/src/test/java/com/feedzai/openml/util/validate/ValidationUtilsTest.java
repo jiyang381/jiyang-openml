@@ -19,4 +19,26 @@ package com.feedzai.openml.util.validate;
 
 import com.feedzai.openml.data.schema.CategoricalValueSchema;
 import com.feedzai.openml.data.schema.DatasetSchema;
-import com.feedzai.openml.util.data.schema.Te
+import com.feedzai.openml.util.data.schema.TestDatasetSchemaBuilder;
+import com.google.common.collect.ImmutableMap;
+import org.junit.Test;
+
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Unit tests on the basic validation methods of {@link ValidationUtils}.
+ *
+ * @author Henrique Costa (henrique.costa@feedzai.com)
+ * @since 0.1.0
+ */
+public class ValidationUtilsTest {
+
+    /**
+     * Tests that the {@link ValidationUtils#baseLoadValidations(DatasetSchema, Map)} accepts a valid
+     * {@link DatasetSchema}.
+     */
+    @Test
+    public void testBaseValidationOK() {
+  
