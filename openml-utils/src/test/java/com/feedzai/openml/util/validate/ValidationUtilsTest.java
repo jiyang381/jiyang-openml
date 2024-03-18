@@ -97,4 +97,16 @@ public class ValidationUtilsTest {
     }
 
     /**
-     * Tests that the {@link ValidationUtils#checkNoFieldsOfType(DatasetSchema, Class)} does returns an error w
+     * Tests that the {@link ValidationUtils#checkNoFieldsOfType(DatasetSchema, Class)} does returns an error when
+     * searching for categorical fields in a schema containing a categorical.
+     */
+    @Test
+    public void testCheckNoFieldsOfTypeCategoricalWithInvalidSchema() {
+        final DatasetSchema schemaWithoutCat =  TestDatasetSchemaBuilder.builder()
+                .withCategoricalFields(3)
+                .withNumericalFields(3)
+                .withStringFields(3)
+                .build();
+
+        assertThat(ValidationUtils.checkNoFieldsOfType(schemaWithoutCat, CategoricalValueSchema.class))
+                .as("Valid
