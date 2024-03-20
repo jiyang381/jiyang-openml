@@ -23,4 +23,24 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.data.schema.FieldSchema;
 import com.feedzai.openml.data.schema.NumericValueSchema;
 import com.feedzai.openml.provider.descriptor.fieldtype.ParamValidationError;
-import com.fe
+import com.feedzai.openml.util.data.schema.TestDatasetSchemaBuilder;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Performs unit tests on the {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} method.
+ *
+ * @author Henrique Costa (henrique.costa@feedzai.com)
+ * @since 0.1.0
+ */
+public class ValidationUtilsValidateCategoricalTest {
+
+    /**
+     * Tests that when {@
