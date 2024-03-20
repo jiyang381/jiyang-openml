@@ -109,4 +109,7 @@ public class ValidationUtilsTest {
                 .build();
 
         assertThat(ValidationUtils.checkNoFieldsOfType(schemaWithoutCat, CategoricalValueSchema.class))
-                .as("Valid
+                .as("Validation of a schema that has a forbidden field type.")
+                .isNotEmpty();
+    }
+}
