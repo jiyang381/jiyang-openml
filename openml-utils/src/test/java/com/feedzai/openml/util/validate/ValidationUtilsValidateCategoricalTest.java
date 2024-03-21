@@ -53,3 +53,18 @@ public class ValidationUtilsValidateCategoricalTest {
                 .withCategoricalFields(3, ImmutableSet.of("cat1", "cat2"))
                 .withCategoricalTarget(true)
                 .build();
+        final DatasetSchema schema = new DatasetSchema(schemaWithTarget.getFieldSchemas());
+
+        final Optional<ParamValidationError> validationResult = ValidationUtils.validateCategoricalSchema(schema);
+
+        assertThat(validationResult)
+                .as("Validating a schema with no target fields fails.")
+                .isPresent();
+    }
+
+    /**
+     * Validates that the utility method accepts a schema with a {@link CategoricalValueSchema} target variable.
+     */
+    @Test
+    public void testValidateCategoricalOK() {
+        final O
