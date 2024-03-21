@@ -43,4 +43,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ValidationUtilsValidateCategoricalTest {
 
     /**
-     * Tests that when {@
+     * Tests that when {@link ValidationUtils#validateCategoricalSchema(DatasetSchema) validating categorical target values} for a schema with no target field,
+     * a {@link ParamValidationError} is returned.
+     */
+    @Test
+    public final void testSchemaWithNoTarget() {
+        final DatasetSchema schemaWithTarget = TestDatasetSchemaBuilder.builder()
+                .withNumericalFields(3)
+                .withCategoricalFields(3, ImmutableSet.of("cat1", "cat2"))
+                .withCategoricalTarget(true)
+                .build();
