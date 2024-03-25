@@ -82,4 +82,20 @@ public class ValidationUtilsValidateCategoricalTest {
      */
     @Test
     public void testValidateCategoricalNumericalTarget() {
-        final Optional<ParamValidationError> valida
+        final Optional<ParamValidationError> validationResult = buildSchemaAndValidateCategorical(
+                false,
+                ImmutableSet.of("cat1", "cat2")
+        );
+
+        assertThat(validationResult)
+                .as("Validating a schema with a numerical target variable")
+                .isNotEmpty();
+    }
+
+    /**
+     * Validates that the utility method rejects a schema with a {@link CategoricalValueSchema} target variable that
+     * only has a single category.
+     */
+    @Test
+    public void testValidateCategoricalSingleCategory() {
+        final Optional<ParamValidationError> vali
