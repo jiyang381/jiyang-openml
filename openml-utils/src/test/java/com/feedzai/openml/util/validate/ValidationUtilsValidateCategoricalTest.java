@@ -98,4 +98,20 @@ public class ValidationUtilsValidateCategoricalTest {
      */
     @Test
     public void testValidateCategoricalSingleCategory() {
-        final Optional<ParamValidationError> vali
+        final Optional<ParamValidationError> validationResult = buildSchemaAndValidateCategorical(
+                true,
+                ImmutableSet.of("cat1")
+        );
+
+        assertThat(validationResult)
+                .as("Validating a schema with a target variable with a single category")
+                .isNotEmpty();
+    }
+
+    /**
+     * Validates that the utility method rejects a schema with a {@link CategoricalValueSchema} target variable that
+     * does not have any category.
+     */
+    @Test
+    public void testValidateCategoricalNoCategories() {
+        final
