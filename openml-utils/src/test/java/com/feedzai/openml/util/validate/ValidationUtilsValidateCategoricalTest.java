@@ -128,4 +128,8 @@ public class ValidationUtilsValidateCategoricalTest {
      * Helper method that builds a {@link DatasetSchema} with the desired characteristics and calls
      * {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} on it.
      *
-     * @param
+     * @param useCategorical Whether the {@link DatasetSchema} should be created with a {@link CategoricalValueSchema}
+     *                       target variable ({@code true}) or a {@link NumericValueSchema} ({@code false}).
+     * @param categories     The {@link CategoricalValueSchema#getNominalValues() categories} to configure in
+     *                       {@link CategoricalValueSchema categorical fields}.
+     * @return The result of calling {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} on the crea
