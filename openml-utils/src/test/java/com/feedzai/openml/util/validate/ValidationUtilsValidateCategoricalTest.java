@@ -132,4 +132,16 @@ public class ValidationUtilsValidateCategoricalTest {
      *                       target variable ({@code true}) or a {@link NumericValueSchema} ({@code false}).
      * @param categories     The {@link CategoricalValueSchema#getNominalValues() categories} to configure in
      *                       {@link CategoricalValueSchema categorical fields}.
-     * @return The result of calling {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} on the crea
+     * @return The result of calling {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} on the created
+     * {@link DatasetSchema}.
+     */
+    private Optional<ParamValidationError> buildSchemaAndValidateCategorical(final boolean useCategorical,
+                                                                             final Set<String> categories) {
+
+        return ValidationUtils.validateCategoricalSchema(
+                TestDatasetSchemaBuilder.builder()
+                        .withNumericalFields(3)
+                        .withCategoricalFields(3, categories)
+                        .withCategoricalTarget(useCategorical)
+                        .build()
+  
