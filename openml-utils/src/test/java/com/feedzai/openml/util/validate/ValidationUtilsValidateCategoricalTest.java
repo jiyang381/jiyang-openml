@@ -114,4 +114,18 @@ public class ValidationUtilsValidateCategoricalTest {
      */
     @Test
     public void testValidateCategoricalNoCategories() {
-        final
+        final Optional<ParamValidationError> validationResult = buildSchemaAndValidateCategorical(
+                true,
+                ImmutableSet.of()
+        );
+
+        assertThat(validationResult)
+                .as("Validating a schema with a target variable with an empty category list")
+                .isNotEmpty();
+    }
+
+    /**
+     * Helper method that builds a {@link DatasetSchema} with the desired characteristics and calls
+     * {@link ValidationUtils#validateCategoricalSchema(DatasetSchema)} on it.
+     *
+     * @param
