@@ -22,4 +22,20 @@
          "fieldName":"fraud",
          "valueSchema":{
             "@type":"categorical",
-         
+            "allowMissing":false,
+            "nominalValues":[
+               "false",
+               "true"
+            ]
+         }
+      },
+      {
+         "fieldIndex":3,
+         "fieldName":"name",
+         "valueSchema":{
+            "@type":"string",
+            "allowMissing":false
+         }
+      }
+   ]
+}
