@@ -144,4 +144,8 @@ public class ValidationUtilsValidateCategoricalTest {
                         .withCategoricalFields(3, categories)
                         .withCategoricalTarget(useCategorical)
                         .build()
-  
+        );
+    }
+
+
+}
