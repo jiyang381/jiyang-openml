@@ -50,4 +50,24 @@ The [openml-utils](https://github.com/jiyang381/jiyang-openml/tree/master/openml
 
   <artifactId>openml-utils</artifactId>
 
-  
+  <!-- Check project tags for the latest version -->
+
+  <version>1.2.0</version>
+
+</dependency>
+
+```
+
+## Building
+
+Build this Maven project with the following command:
+
+```bash
+
+mvn clean install
+
+```
+
+## Developing
+
+Ensure your provider is identified according to the specification of [Java's Service Loader](https://docs.oracle.com/javase/9/docs/api/java/util/ServiceLoader.html). This means generating a Jar with the code (potentially with all necessary dependencies included in it or a set of Jars), and making sure to include a file `resources/META-
