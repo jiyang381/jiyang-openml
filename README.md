@@ -12,4 +12,20 @@ An extension of Feedzai's Machine Learning API to integrate ML platforms with th
 
 Check out the [openml-example project](https://github.com/jiyang381/jiyang-openml/tree/master/openml-example) for a trivial example of implementing a new provider.
 
-While building your OpenML Provider with Maven, you can add dependencies on the artifacts in this repository. Learn more in
+While building your OpenML Provider with Maven, you can add dependencies on the artifacts in this repository. Learn more in the following sections.
+
+### OpenML API
+
+[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/jiyang/openml-api/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.jiyang/openml-api)
+
+The [OpenML API module](https://github.com/jiyang381/jiyang-openml/tree/master/openml-api) contains the primary concepts facilitating the interaction between the platform and any external ML platform.
+
+```xml
+
+<dependency>
+
+  <groupId>com.jiyang</groupId>
+
+  <artifactId>openml-api</artifactId>
+
+  <!-- Check proj
