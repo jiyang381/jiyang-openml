@@ -28,4 +28,26 @@ The [OpenML API module](https://github.com/jiyang381/jiyang-openml/tree/master/o
 
   <artifactId>openml-api</artifactId>
 
-  <!-- Check proj
+  <!-- Check project tags for the latest version -->
+
+  <version>1.2.0</version>
+
+</dependency>
+
+```
+
+### OpenML Utils
+
+[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/jiyang/openml-utils/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.jiyang/openml-utils)
+
+The [openml-utils](https://github.com/jiyang381/jiyang-openml/tree/master/openml-example) module can help you manipulate some of the core concepts.
+
+```xml
+
+<dependency>
+
+  <groupId>com.jiyang</groupId>
+
+  <artifactId>openml-utils</artifactId>
+
+  
