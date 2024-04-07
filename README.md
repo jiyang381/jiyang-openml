@@ -70,4 +70,12 @@ mvn clean install
 
 ## Developing
 
-Ensure your provider is identified according to the specification of [Java's Service Loader](https://docs.oracle.com/javase/9/docs/api/java/util/ServiceLoader.html). This means generating a Jar with the code (potentially with all necessary dependencies included in it or a set of Jars), and making sure to include a file `resources/META-
+Ensure your provider is identified according to the specification of [Java's Service Loader](https://docs.oracle.com/javase/9/docs/api/java/util/ServiceLoader.html). This means generating a Jar with the code (potentially with all necessary dependencies included in it or a set of Jars), and making sure to include a file `resources/META-INF/services/com.jiyang.openml.MachineLearningProvider` to indicate the providers in your code. Explore [our example in this repository](https://github.com/jiyang381/jiyang-openml/blob/master/openml-example/src/main/resources/META-INF/services/com.jiyang.mlapi.provider.MachineLearningProvider). [Google's Auto Service](https://github.com/google/auto/tree/master/service) might assist in setting this up for you.
+
+### Maven Archetype
+
+To ease the creation of new OpenML Providers, a Maven archetype was created. To get started, run:
+
+```bash
+
+mvn archetype:generate
