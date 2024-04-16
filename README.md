@@ -78,4 +78,12 @@ To ease the creation of new OpenML Providers, a Maven archetype was created. To 
 
 ```bash
 
-mvn archetype:generate
+mvn archetype:generate -DarchetypeGroupId=com.jiyang -DarchetypeArtifactId=openml-provider-archetype -DarchetypeVersion=1.2.0
+
+```
+
+After providing all necessary details (your new provider groupId, artifactId, and version), a provider template with some advice will be accessible on your workspace.
+
+### IDE Compatibility
+
+This project uses the [jgitver Maven plugin](https://github.com/jgitver/jgitver). If you are using IntelliJ IDEA, you must configure the project to skip the plugin. [See the related issue](https://github.com/jgitver/jgitver-maven-plugin/wiki/Intellij-IDEA-configuration).
